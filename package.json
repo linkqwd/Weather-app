@@ -1,0 +1,34 @@
+{
+  "name": "default_parcel",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --out-dir production/ --public-url ./",
+    "prebuild": "shx rm -rf production/",
+    "publish": "push-dir --dir=production --branch=gh-pages"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "parcel-bundler": "^1.11.0",
+    "prettier": "^1.16.4",
+    "push-dir": "^0.4.1",
+    "sass": "^1.17.2",
+    "shx": "^0.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linkqwd/default_parcel"
+  },
+  "dependencies": {
+    "Components": "^0.1.0",
+    "scripts": "^0.1.0"
+  }
+}

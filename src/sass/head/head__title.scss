@@ -1,0 +1,12 @@
+.head__title {
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  transition: 225ms ease-in-out;
+  @extend .transition-225;
+
+  &:hover {
+    color: $primary;
+  }
+}

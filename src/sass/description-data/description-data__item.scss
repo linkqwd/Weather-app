@@ -1,0 +1,12 @@
+.description-data__item {
+  margin-bottom: 5px;
+  color: $light-font-color;
+
+  & span {
+    color: $base-font-color;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

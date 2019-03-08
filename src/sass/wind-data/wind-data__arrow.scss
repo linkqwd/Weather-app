@@ -1,0 +1,12 @@
+.wind-data__arrow {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url(../../icons/navigation.svg) center no-repeat;
+  transform: scale(1.4);
+  margin-right: 25px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: rotate(60deg);
+}

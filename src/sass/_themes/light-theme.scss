@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,400i,500,500i,700&subset=cyrillic');
+
+$font-family: 'Ubuntu', sans-serif;
+
+$primary: #f17bbb;
+$secondary: #2b244d;
+$document-background: #f5f5f5;
+$base-font-color: #222;
+$light-font-color: #666;
+$border-color: #bbb;
+$card-bg: #fff;
+$card-border: #ddd;
+
+.transition-225 {
+  transition: all 225ms ease-in-out;
+  transition-delay: 25ms;
+}
+
+@import '../main';

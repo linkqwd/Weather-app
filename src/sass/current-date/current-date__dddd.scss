@@ -1,0 +1,7 @@
+.current-date__dddd {
+  font-weight: 500;
+
+  &:after {
+    content: ', ';
+  }
+}

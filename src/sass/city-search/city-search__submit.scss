@@ -1,0 +1,11 @@
+.city-search__submit {
+  position: absolute;
+  z-index: 10;
+  top: 1px;
+  bottom: 1px;
+  right: 1px;
+  min-width: 40px;
+  border: 0;
+  background: $card-bg;
+  cursor: pointer;
+}

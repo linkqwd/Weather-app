@@ -1,0 +1,7 @@
+.city-search__container {
+  position: relative;
+  border-radius: 3px;
+  z-index: 10;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+  @extend .transition-225;
+}

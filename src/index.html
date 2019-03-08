@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  </head>
+  <body id="app" class="layout">
+    <header class="head layout__header">
+      <a href="/" class="logo head__logo">
+        <img class="logo__image" src="assets/logo.png" alt="logo" />
+      </a>
+      <a href="/" class="head__title"><h1>Linky Weather</h1></a>
+      <div class="head__date-wrapper current-date">
+        <span class="current-date__dddd">Sunday</span>
+        <span class="current-date__dd">15</span>
+        <span class="current-date__mmmm">May</span>
+      </div>
+    </header>
+    <main class="layout__main">
+      <form class="city-search" method="GET">
+        <div class="city-search__container">
+          <button class="city-search__burger" type="button">&#9776;</button>
+          <input class="city-search__input" placeholder="Enter city name or coordinates" name="place-to-find" type="text" />
+          <button class="city-search__submit" type="button">&#x1F50D;</button>
+        </div>
+
+        <div id="menu-option" class="search-menu city-search__menu">
+          <section class="favorite-cities">
+            <h3 class="favorite-cities__header">Favourite Cities</h3>
+            <ul class="favorite-cities__list">
+              <li class="favorite-cities__item">London</li>
+              <li class="favorite-cities__item">Kiev</li>
+            </ul>
+          </section>
+
+          <section class="search-history">
+            <h3 class="search-history__header">Search history</h3>
+            <ul class="search-history__list">
+              <li class="search-history__item">Odessa</li>
+              <li class="search-history__item">Gamburg</li>
+            </ul>
+          </section>
+        </div>
+      </form>
+
+      <div class="layout__today-wrapper current-weather">
+        <div class="current-weather__head-wrap">
+          <h2 class="current-weather__header">London</h2>
+          <button class="current-weather__favorite-btn" type="button">&#9734;</button>
+        </div>
+
+        <p class="current-weather__day">Today</p>
+        <p class="current-weather__weather-type">Light snow</p>
+
+        <div class="current-weather__weather-info">
+          <div class="tempreture-data current-weather__weather-item">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value">7</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+
+          <div class="wind-data current-weather__weather-item">
+            <span class="wind-data__icon"></span>
+            <span class="wind-data__arrow"></span>
+            <span class="wind-data__value">4.45 km</span>
+          </div>
+
+          <div class="description-data current-weather__weather-item">
+            <p class="description-data__item">pressure: <span>0.99 atm</span></p>
+            <p class="description-data__item">Humidity: <span>11%</span></p>
+            <p class="description-data__item">Sunrise: <span>06:42</span></p>
+            <p class="description-data__item">Sunset: <span>18:01</span></p>
+          </div>
+        </div>
+
+        <div class="forecast-daily layout__daily-forecast">
+          <div class="forecast-daily__item">
+            <p class="forecast-daily__time">12:00</p>
+            <div class="tempreture-data">
+              <span class="tempreture-data__icon tempreture-data__icon_size_small"></span>
+              <span class="tempreture-data__value tempreture-data__value_size_small">8</span>
+              <span class="tempreture-data__degrees">&#8451;</span>
+            </div>
+          </div>
+          <div class="forecast-daily__item">
+            <p class="forecast-daily__time">15:00</p>
+            <div class="tempreture-data">
+              <span class="tempreture-data__icon tempreture-data__icon_size_small"></span>
+              <span class="tempreture-data__value tempreture-data__value_size_small">9</span>
+              <span class="tempreture-data__degrees">&#8451;</span>
+            </div>
+          </div>
+          <div class="forecast-daily__item">
+            <p class="forecast-daily__time">18:00</p>
+            <div class="tempreture-data">
+              <span class="tempreture-data__icon tempreture-data__icon_size_small"></span>
+              <span class="tempreture-data__value tempreture-data__value_size_small">7</span>
+              <span class="tempreture-data__degrees">&#8451;</span>
+            </div>
+          </div>
+          <div class="forecast-daily__item">
+            <p class="forecast-daily__time">21:00</p>
+            <div class="tempreture-data">
+              <span class="tempreture-data__icon tempreture-data__icon_size_small"></span>
+              <span class="tempreture-data__value tempreture-data__value_size_small">5</span>
+              <span class="tempreture-data__degrees">&#8451;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="forecast-weekly layout__weekly-forecast">
+        <div class="forecast-weekly__item">
+          <p class="forecast-weekly__date">Tomorrow</p>
+          <div class="tempreture-data">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">5</span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">-2</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+        </div>
+        <div class="forecast-weekly__item">
+          <p class="forecast-weekly__date">Tuesday</p>
+          <div class="tempreture-data">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">5</span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">-4</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+        </div>
+        <div class="forecast-weekly__item">
+          <p class="forecast-weekly__date">Wednesday</p>
+          <div class="tempreture-data">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">5</span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">-3</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+        </div>
+        <div class="forecast-weekly__item">
+          <p class="forecast-weekly__date">Thursday</p>
+          <div class="tempreture-data">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">4</span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">-2</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+        </div>
+        <div class="forecast-weekly__item">
+          <p class="forecast-weekly__date">Friday</p>
+          <div class="tempreture-data">
+            <span class="tempreture-data__icon"></span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">7</span>
+            <span class="tempreture-data__value tempreture-data__value_size_small">1</span>
+            <span class="tempreture-data__degrees">&#8451;</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer layout__footer"></footer>
+  </body>
+  <script src="scripts/index.js"></script>
+</html>

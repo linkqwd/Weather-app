@@ -1,0 +1,9 @@
+.head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 15px 50px;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+  background: $secondary;
+  color: white;
+}
