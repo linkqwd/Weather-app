@@ -5,6 +5,9 @@ import { SearchHistory } from '../SearchHistory';
 export default class SearchBar extends Component {
   constructor(host, props) {
     super(host, props);
+  }
+
+  bindBeforeRender() {
     this.handleClick = this.handleClick.bind(this);
   }
 

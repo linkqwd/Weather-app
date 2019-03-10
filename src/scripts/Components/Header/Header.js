@@ -1,4 +1,5 @@
 import Component from '../../Framework/Component';
+import logoImg from '../../../assets/logo.png';
 
 export default class Header extends Component {
   constructor(host, props) {
@@ -21,7 +22,7 @@ export default class Header extends Component {
                 attributes: [
                   {
                     name: 'src',
-                    value: 'logo.e9a9c890.png'
+                    value: `${logoImg}`
                   },
                   {
                     name: 'alt',

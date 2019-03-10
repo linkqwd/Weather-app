@@ -50,7 +50,7 @@ export default class CurrentWeather extends Component {
             children: [
               {
                 tag: WeatherForecastItem,
-                props: { tValue: '7', tUnit: '&#8451;' }
+                props: { tValue: this.props.tValue, tUnit: this.props.tUnit }
               },
               {
                 tag: 'div',

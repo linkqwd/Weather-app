@@ -10,6 +10,7 @@
     "publish": "push-dir --dir=production --branch=gh-pages"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.0.0",
@@ -26,9 +27,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/linkqwd/default_parcel"
-  },
-  "dependencies": {
-    "Components": "^0.1.0",
-    "scripts": "^0.1.0"
   }
 }

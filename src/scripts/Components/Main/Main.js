@@ -3,10 +3,17 @@ import { SearchBar } from './SearchBar';
 import { CurrentWeather } from './CurrentWeather';
 import { WeatherForecastDaily } from './WeatherForecastDaily';
 import { WeatherForecastWeekly } from './WeatherForecastWeekly';
+import { WeatherDataService } from '../../Services';
 
 export default class Main extends Component {
   constructor(host, props) {
     super(host, props);
+  }
+
+  getDataBeforeRender() {
+    const result = WeatherDataService.getCurrentWeather();
+    console.log(result);
+    this._render();
   }
 
   render() {
@@ -26,7 +33,7 @@ export default class Main extends Component {
               {
                 tag: CurrentWeather,
                 props: {
-                  tValue: '7',
+                  tValue: '17',
                   tUnit: '&#8451;',
                   wSpeed: '4.45',
                   wUnit: 'km/h',
