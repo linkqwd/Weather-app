@@ -23,7 +23,12 @@ export default class WeatherForecastWeekly extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: 1, tValueMin: -2, tUnit: '&deg;' }
+                props: {
+                  tValue: 1,
+                  tValueMin: -2,
+                  tUnit: '&deg;',
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -38,7 +43,12 @@ export default class WeatherForecastWeekly extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: 4, tValueMin: -2, tUnit: '&deg;' }
+                props: {
+                  tValue: 4,
+                  tValueMin: -2,
+                  tUnit: '&deg;',
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -53,7 +63,12 @@ export default class WeatherForecastWeekly extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: 1, tValueMin: -2, tUnit: '&deg;' }
+                props: {
+                  tValue: 1,
+                  tValueMin: -2,
+                  tUnit: '&deg;',
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -68,7 +83,12 @@ export default class WeatherForecastWeekly extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: 1, tValueMin: -2, tUnit: '&deg;' }
+                props: {
+                  tValue: 1,
+                  tValueMin: -2,
+                  tUnit: '&deg;',
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -83,7 +103,12 @@ export default class WeatherForecastWeekly extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: 1, tValueMin: -2, tUnit: '&deg;' }
+                props: {
+                  tValue: 1,
+                  tValueMin: -2,
+                  tUnit: '&deg;',
+                  valueSmall: true
+                }
               }
             ]
           }

@@ -13,7 +13,6 @@ export default class Main extends Component {
   getDataBeforeRender() {
     const result = WeatherDataService.getCurrentWeather();
     console.log(result);
-    this._render();
   }
 
   render() {

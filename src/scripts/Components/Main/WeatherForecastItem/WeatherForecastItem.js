@@ -9,10 +9,11 @@ export default class WeatherForecastItem extends Component {
     const visualClsIcon = ['tempreture-data__icon'];
     const visualClsValue = ['tempreture-data__value'];
 
-    if (this.props.small) {
-      visualClsIcon.push('tempreture-data__icon_size_small');
+    if (this.props.valueSmall)
       visualClsValue.push('tempreture-data__value_size_small');
-    }
+
+    if (this.props.iconSmall)
+      visualClsIcon.push('tempreture-data__icon_size_small');
 
     const dataItem = {
       tag: 'div',
@@ -39,7 +40,7 @@ export default class WeatherForecastItem extends Component {
       dataItem.children.push({
         tag: 'span',
         content: this.props.tValueMin,
-        classList: [...visualClsValue]
+        classList: [...visualClsValue, 'tempreture-data__value_type_min']
       });
 
       dataItem.children.push({

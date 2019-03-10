@@ -23,7 +23,12 @@ export default class WeatherForecastDaily extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: '1', tUnit: '&deg;', small: true }
+                props: {
+                  tValue: '1',
+                  tUnit: '&deg;',
+                  iconSmall: true,
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -38,7 +43,12 @@ export default class WeatherForecastDaily extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: '1', tUnit: '&deg;', small: true }
+                props: {
+                  tValue: '1',
+                  tUnit: '&deg;',
+                  iconSmall: true,
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -53,7 +63,12 @@ export default class WeatherForecastDaily extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: '1', tUnit: '&deg;', small: true }
+                props: {
+                  tValue: '1',
+                  tUnit: '&deg;',
+                  iconSmall: true,
+                  valueSmall: true
+                }
               }
             ]
           },
@@ -68,7 +83,12 @@ export default class WeatherForecastDaily extends Component {
               },
               {
                 tag: WeatherForecastItem,
-                props: { tValue: '1', tUnit: '&deg;', small: true }
+                props: {
+                  tValue: '1',
+                  tUnit: '&deg;',
+                  iconSmall: true,
+                  valueSmall: true
+                }
               }
             ]
           }
