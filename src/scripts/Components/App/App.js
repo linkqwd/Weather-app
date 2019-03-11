@@ -1,6 +1,7 @@
 import Component from '../../Framework/Component';
 import { Header } from '../Header';
 import { Main } from '../Main';
+import { SearchBar } from '../SearchBar';
 
 export default class App extends Component {
   constructor(host) {
@@ -8,13 +9,21 @@ export default class App extends Component {
   }
 
   render() {
-    return [
+    const application = [
       {
         tag: Header
       },
       {
-        tag: Main
+        tag: SearchBar
+      },
+      {
+        tag: Main,
+        props: {
+          tValue: 7
+        }
       }
     ];
+
+    return application;
   }
 }
