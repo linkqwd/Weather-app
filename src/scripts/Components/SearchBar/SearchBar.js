@@ -1,6 +1,6 @@
 import Component from '../../Framework/Component';
-import { FavouriteLocations } from '../main/FavouriteLocations';
-import { SearchHistory } from '../main/SearchHistory';
+import { FavouriteLocations } from './FavouriteLocations';
+import { SearchHistory } from './SearchHistory';
 import { WeatherDataService } from '../../Services';
 
 export default class SearchBar extends Component {

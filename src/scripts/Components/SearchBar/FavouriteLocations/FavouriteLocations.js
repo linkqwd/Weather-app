@@ -1,4 +1,4 @@
-import Component from '../../../../Framework/Component';
+import Component from '../../../Framework/Component';
 
 export default class FavouriteLocations extends Component {
   constructor(host, props) {
