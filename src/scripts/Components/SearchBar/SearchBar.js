@@ -1,6 +1,7 @@
-import Component from '../../../Framework/Component';
-import { FavouriteLocations } from '../FavouriteLocations';
-import { SearchHistory } from '../SearchHistory';
+import Component from '../../Framework/Component';
+import { FavouriteLocations } from '../main/FavouriteLocations';
+import { SearchHistory } from '../main/SearchHistory';
+import { WeatherDataService } from '../../Services';
 
 export default class SearchBar extends Component {
   constructor(host, props) {
@@ -8,10 +9,19 @@ export default class SearchBar extends Component {
   }
 
   bindBeforeRender() {
-    this.handleClick = this.handleClick.bind(this);
+    this.handleMenuToggle = this.handleMenuToggle.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
-  handleClick(e) {
+  handleSearchSubmit() {
+    const searchInput = document.getElementById('search-input');
+    const searchSubmitBtn = document.getElementById('search-submit');
+    const searchResult = WeatherDataService.getCurrentWeather(
+      searchInput.value
+    );
+  }
+
+  handleMenuToggle(e) {
     const menu = document.getElementById('menu-option');
     menu.classList.toggle('search-menu__opened');
   }
@@ -39,7 +49,7 @@ export default class SearchBar extends Component {
                 eventHandler: [
                   {
                     eventType: 'click',
-                    handler: this.handleClick
+                    handler: this.handleMenuToggle
                   }
                 ],
                 attributes: [
@@ -64,6 +74,10 @@ export default class SearchBar extends Component {
                   {
                     name: 'type',
                     value: 'text'
+                  },
+                  {
+                    name: 'id',
+                    value: 'search-input'
                   }
                 ]
               },
@@ -74,6 +88,16 @@ export default class SearchBar extends Component {
                   {
                     name: 'type',
                     value: 'button'
+                  },
+                  {
+                    name: 'id',
+                    value: 'search-submit'
+                  }
+                ],
+                eventHandler: [
+                  {
+                    eventType: 'click',
+                    handler: this.handleSearchSubmit
                   }
                 ],
                 classList: ['city-search__submit']

@@ -1,17 +1,13 @@
 class WeatherDataService {
-  getCurrentWeather() {
-    const friendsData = async function buildFriendsList() {
-      const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=New%20york,us&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
-      );
-      const responseData = await response.json();
+  async getCurrentWeather(city) {
+    const response = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
+    );
+    const responseData = await response.json();
 
-      console.log(responseData.main.temp);
+    console.log(responseData);
 
-      return responseData.main.temp;
-    };
-
-    return friendsData();
+    return responseData;
   }
 
   getWeatherForecast() {}
