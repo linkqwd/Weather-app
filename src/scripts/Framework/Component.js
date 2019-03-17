@@ -7,9 +7,8 @@ export default class Component {
   }
 
   updateState(state) {
-    this.state = state;
+    this.state = Object.assign({}, this.state, state);
     this._render();
-    console.log(state);
   }
 
   _render() {
