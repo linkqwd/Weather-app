@@ -2,8 +2,14 @@ export default class Component {
   constructor(host, props = {}) {
     this.host = host;
     this.props = props;
-    this.bindBeforeRender();
+    this.init();
     this._render();
+  }
+
+  updateState(state) {
+    this.state = state;
+    this._render();
+    console.log(state);
   }
 
   _render() {
@@ -20,7 +26,7 @@ export default class Component {
   _vDomPrototypeElementToHtmlElement(element) {
     if (element.tag) {
       if (typeof element.tag === 'function') {
-        const container = document.createDocumentFragment();
+        const container = document.createElement('div');
         new element.tag(container, element.props);
         return container;
       } else {
@@ -60,6 +66,6 @@ export default class Component {
     }
     return element;
   }
-  bindBeforeRender() {}
+  init() {}
   getDataBeforeRender() {}
 }
