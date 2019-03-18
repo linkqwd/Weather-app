@@ -2,7 +2,12 @@ export default class Component {
   constructor(host, props = {}) {
     this.host = host;
     this.props = props;
-    this.bindBeforeRender();
+    this.init();
+    this._render();
+  }
+
+  updateState(state) {
+    this.state = Object.assign({}, this.state, state);
     this._render();
   }
 
@@ -20,7 +25,7 @@ export default class Component {
   _vDomPrototypeElementToHtmlElement(element) {
     if (element.tag) {
       if (typeof element.tag === 'function') {
-        const container = document.createDocumentFragment();
+        const container = document.createElement('div');
         new element.tag(container, element.props);
         return container;
       } else {
@@ -43,7 +48,6 @@ export default class Component {
 
         if (element.eventHandler) {
           element.eventHandler.forEach(item => {
-            console.log('item', item);
             container.addEventListener(item.eventType, item.handler);
           });
         }
@@ -60,6 +64,5 @@ export default class Component {
     }
     return element;
   }
-  bindBeforeRender() {}
-  getDataBeforeRender() {}
+  init() {}
 }

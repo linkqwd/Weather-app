@@ -17,10 +17,7 @@ export default class App extends Component {
         tag: SearchBar
       },
       {
-        tag: Main,
-        props: {
-          tValue: 7
-        }
+        tag: Main
       }
     ];
 

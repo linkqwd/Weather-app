@@ -1,5 +1,6 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
+import { WeatherDataService } from '../../../Services';
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -19,7 +20,7 @@ export default class CurrentWeather extends Component {
               {
                 tag: 'h2',
                 classList: 'current-weather__header',
-                content: 'London'
+                content: this.props.city
               },
               {
                 tag: 'button',
@@ -62,7 +63,13 @@ export default class CurrentWeather extends Component {
                   },
                   {
                     tag: 'span',
-                    classList: ['wind-data__arrow']
+                    classList: ['wind-data__arrow'],
+                    attributes: [
+                      {
+                        name: 'style',
+                        value: `transform: rotate(${this.props.wDeg - 45}deg)`
+                      }
+                    ]
                   },
                   {
                     tag: 'span',
@@ -73,7 +80,10 @@ export default class CurrentWeather extends Component {
               },
               {
                 tag: 'div',
-                classList: ['description-data', 'current-weather__weather-item'],
+                classList: [
+                  'description-data',
+                  'current-weather__weather-item'
+                ],
                 children: [
                   {
                     tag: 'p',

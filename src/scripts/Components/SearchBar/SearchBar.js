@@ -2,26 +2,46 @@ import Component from '../../Framework/Component';
 import { FavouriteLocations } from './FavouriteLocations';
 import { SearchHistory } from './SearchHistory';
 import { WeatherDataService } from '../../Services';
+import { AppState } from '../../Services';
 
 export default class SearchBar extends Component {
   constructor(host, props) {
     super(host, props);
   }
 
-  bindBeforeRender() {
-    this.handleMenuToggle = this.handleMenuToggle.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-  }
-
-  handleSearchSubmit() {
-    const searchInput = document.getElementById('search-input');
-    const searchSubmitBtn = document.getElementById('search-submit');
-    const searchResult = WeatherDataService.getCurrentWeather(
-      searchInput.value
+  init() {
+    ['handleMenuToggle', 'handleSearchClick', 'handleFormSubmit'].forEach(
+      methodName => (this[methodName] = this[methodName].bind(this))
     );
   }
 
-  handleMenuToggle(e) {
+  handleSearchClick() {
+    const searchInput = document.getElementById('search-input');
+    WeatherDataService.getCurrentWeather(searchInput.value)
+      .then(currentWeatherPromise => currentWeatherPromise)
+      .then(currentWeatherPromise => {
+        WeatherDataService.getWeatherForecast(searchInput.value).then(
+          foreCastPromise => {
+            AppState.update('SEARCH-RESULT', {
+              currentWeather: currentWeatherPromise,
+              foreCast: foreCastPromise
+            });
+          }
+        );
+      });
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-input');
+    if (searchInput.value) {
+      this.handleSearchClick();
+    } else {
+      this.handleMenuToggle();
+    }
+  }
+
+  handleMenuToggle() {
     const menu = document.getElementById('menu-option');
     menu.classList.toggle('search-menu__opened');
   }
@@ -31,10 +51,10 @@ export default class SearchBar extends Component {
       {
         tag: 'form',
         classList: ['city-search'],
-        attributes: [
+        eventHandler: [
           {
-            name: 'method',
-            value: 'GET'
+            eventType: 'submit',
+            handler: this.handleFormSubmit
           }
         ],
         children: [
@@ -46,16 +66,16 @@ export default class SearchBar extends Component {
                 tag: 'button',
                 content: '&#9776;',
                 classList: 'city-search__burger',
-                eventHandler: [
-                  {
-                    eventType: 'click',
-                    handler: this.handleMenuToggle
-                  }
-                ],
                 attributes: [
                   {
                     name: 'type',
                     value: 'button'
+                  }
+                ],
+                eventHandler: [
+                  {
+                    eventType: 'click',
+                    handler: this.handleMenuToggle
                   }
                 ]
               },
@@ -78,12 +98,20 @@ export default class SearchBar extends Component {
                   {
                     name: 'id',
                     value: 'search-input'
+                  },
+                  {
+                    name: 'value',
+                    value: 'Kyiv, ua'
+                  },
+                  {
+                    name: 'autocomplete',
+                    value: 'off'
                   }
                 ]
               },
               {
                 tag: 'button',
-                content: '&#x1F50D;',
+                content: '',
                 attributes: [
                   {
                     name: 'type',
@@ -97,7 +125,7 @@ export default class SearchBar extends Component {
                 eventHandler: [
                   {
                     eventType: 'click',
-                    handler: this.handleSearchSubmit
+                    handler: this.handleSearchClick
                   }
                 ],
                 classList: ['city-search__submit']
