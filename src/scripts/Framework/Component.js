@@ -6,6 +6,11 @@ export default class Component {
     this._render();
   }
 
+  static getTimeFromEpoch(arg, params) {
+    var date = new Date(arg * 1000);
+    return date.toLocaleString('en-GB', params);
+  }
+
   updateState(state) {
     this.state = Object.assign({}, this.state, state);
     this._render();
@@ -64,5 +69,6 @@ export default class Component {
     }
     return element;
   }
+
   init() {}
 }

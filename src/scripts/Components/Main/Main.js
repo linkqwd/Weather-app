@@ -10,24 +10,24 @@ export default class Main extends Component {
     AppState.watch('SEARCH-RESULT', this.updateMySelf);
   }
 
-  dayOfmonth(dt) {
-    return new Date(dt * 1000).getDate();
-  }
+  defineMaxValue(array, objectValue) {
+    const decompose = objectValue.split('.');
 
-  defineMaxTemp(array) {
     return array.reduce((stack, value) => {
-      if (stack < value.main.temp_min) {
-        return value.main.temp_min;
+      if (stack < value[decompose[0]][decompose[1]]) {
+        return value[decompose[0]][decompose[1]];
       } else {
         return stack;
       }
     }, 0);
   }
 
-  defineMinTemp(array) {
+  defineMinValue(array, objectValue) {
+    const decompose = objectValue.split('.');
+
     return array.reduce((stack, value) => {
-      if (stack > value.main.temp_min) {
-        return value.main.temp_min;
+      if (stack > value[decompose[0]][decompose[1]]) {
+        return value[decompose[0]][decompose[1]];
       } else {
         return stack;
       }
@@ -40,49 +40,42 @@ export default class Main extends Component {
   }
 
   updateMySelf(state) {
-    const newState = {
-      // Current weather
-      tValue: state.currentWeather.main.temp,
-      tUnit: '&#8451',
+    const currentWeather = {
       city: `${state.currentWeather.name}, ${state.currentWeather.sys.country}`,
+      dt: state.currentWeather.dt,
+      tValue: Math.round(state.currentWeather.main.temp),
+      tMinValue: Math.round(state.currentWeather.main.temp_min),
+      tUnit: '&#8451',
       wSpeed: state.currentWeather.wind.speed,
       wUnit: 'mph',
       wDeg: state.currentWeather.wind.deg,
-      pressure: state.currentWeather.main.pressure,
+      pressure: Math.round(state.currentWeather.main.pressure),
       humidity: `${state.currentWeather.main.humidity}%`,
       sunrise: state.currentWeather.sys.sunrise,
-      sunset: state.currentWeather.sys.sunset,
+      sunset: state.currentWeather.sys.sunset
+    };
 
-      // Daily forecast
-      time1: state.foreCast.list[1].dt_txt,
-      time2: state.foreCast.list[2].dt_txt,
-      time3: state.foreCast.list[3].dt_txt,
-      time4: state.foreCast.list[4].dt_txt,
-      time5: state.foreCast.list[5].dt_txt,
-
-      tValue1: state.foreCast.list[1].main.temp,
-      tValue2: state.foreCast.list[2].main.temp,
-      tValue3: state.foreCast.list[3].main.temp,
-      tValue4: state.foreCast.list[4].main.temp,
-      tValue5: state.foreCast.list[5].main.temp,
-
-      // Weekly forecast
+    const weeklyForecast = {
       fDay0: {
+        currentWeather: currentWeather,
         dayOfWeek: this.relativeDayOfMonth(0),
         data: [],
         maxTemp: '',
-        minTemp: ''
+        minTemp: '',
+        maxWindSpeed: ''
       }
     };
 
     for (let i = 0, obj = 0; i < state.foreCast.list.length; i++) {
-      let day = this.dayOfmonth(state.foreCast.list[i].dt);
+      let day = +Component.getTimeFromEpoch(state.foreCast.list[i].dt, {
+        day: '2-digit'
+      });
 
-      if (newState[`fDay${obj}`].dayOfWeek === day) {
-        newState[`fDay${obj}`].data.push(state.foreCast.list[i]);
+      if (weeklyForecast[`fDay${obj}`].dayOfWeek === day) {
+        weeklyForecast[`fDay${obj}`].data.push(state.foreCast.list[i]);
       } else {
-        if (newState[`fDay${++obj}`] === undefined) {
-          newState[`fDay${obj}`] = {
+        if (weeklyForecast[`fDay${++obj}`] === undefined) {
+          weeklyForecast[`fDay${obj}`] = {
             dayOfWeek: this.relativeDayOfMonth(obj),
             data: [],
             maxTemp: '',
@@ -90,27 +83,38 @@ export default class Main extends Component {
           };
         }
 
-        newState[`fDay${obj}`].data.push(state.foreCast.list[i]);
-        newState[`fDay${obj}`].maxTemp = this.defineMaxTemp(
-          newState[`fDay${obj}`].data
-        );
-        newState[`fDay${obj}`].minTemp = this.defineMinTemp(
-          newState[`fDay${obj}`].data
-        );
+        weeklyForecast[`fDay${obj}`].data.push(state.foreCast.list[i]);
       }
     }
 
-    console.log(newState);
+    for (let key in weeklyForecast) {
+      weeklyForecast[key].maxTemp = Math.round(
+        this.defineMaxValue(weeklyForecast[key].data, 'main.temp')
+      );
+      weeklyForecast[key].minTemp = Math.round(
+        this.defineMinValue(weeklyForecast[key].data, 'main.temp')
+      );
+      weeklyForecast[key].maxWindSpeed = Math.round(
+        this.defineMaxValue(weeklyForecast[key].data, 'wind.speed')
+      );
+    }
 
-    this.updateState(newState);
+    const dailyForecast = {
+      fDayX: weeklyForecast.fDay0.data
+    };
+
+    this.updateState({
+      currentWeather: currentWeather,
+      dailyForecast: dailyForecast,
+      weeklyForecast: weeklyForecast
+    });
   }
 
   init() {
     [
       'updateMySelf',
-      'defineMinTemp',
-      'defineMaxTemp',
-      'dayOfmonth',
+      'defineMinValue',
+      'defineMaxValue',
       'relativeDayOfMonth'
     ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
   }
@@ -129,17 +133,17 @@ export default class Main extends Component {
             children: [
               {
                 tag: CurrentWeather,
-                props: this.state
+                props: this.state.currentWeather
               },
               {
                 tag: WeatherForecastDaily,
-                props: this.state
+                props: this.state.dailyForecast
               }
             ]
           },
           {
             tag: WeatherForecastWeekly,
-            props: this.state
+            props: this.state.weeklyForecast
           }
         ]
       }

@@ -12,6 +12,7 @@ class WeatherDataService {
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
     );
     const responseData = await response.json();
+
     return responseData;
   }
 }
