@@ -9,6 +9,7 @@ export default class CurrentWeather extends Component {
   }
 
   updateMySelf(state) {
+    console.log(state);
     const newState = {
       tValue:
         'currentWeather' in state ? state.currentWeather.tValue : state.maxTemp,
@@ -31,7 +32,26 @@ export default class CurrentWeather extends Component {
       humidity:
         'currentWeather' in state
           ? state.currentWeather.humidity
-          : `${state.data[0].main.humidity}%`
+          : `${state.data[0].main.humidity}%`,
+
+      dt:
+        'currentWeather' in state
+          ? state.currentWeather.dt
+          : Component.getTimeFromEpoch(state.data[0].dt, { weekday: 'long' }),
+
+      descr:
+        'currentWeather' in state
+          ? state.currentWeather.descr
+          : `${state.data[5].weather[0].main}, ${
+              state.data[5].weather[0].description
+            }`,
+      icon:
+        'currentWeather' in state
+          ? state.currentWeather.icon
+          : state.data[5].weather[0].icon,
+
+      sunrise: Component.getTimeFromEpoch(state.sunrise),
+      sunset: Component.getTimeFromEpoch(state.sunset)
     };
 
     this.updateState(newState);
@@ -78,12 +98,12 @@ export default class CurrentWeather extends Component {
           {
             tag: 'p',
             classList: 'current-weather__day',
-            content: 'Today'
+            content: this.state.dt
           },
           {
             tag: 'p',
             classList: 'current-weather__weather-type',
-            content: 'Light snow'
+            content: this.state.descr
           },
           {
             tag: 'div',
@@ -91,7 +111,11 @@ export default class CurrentWeather extends Component {
             children: [
               {
                 tag: WeatherForecastItem,
-                props: { tValue: this.state.tValue, tUnit: this.state.tUnit }
+                props: {
+                  tValue: this.state.tValue,
+                  tUnit: this.state.tUnit,
+                  icon: this.state.icon
+                }
               },
               {
                 tag: 'div',
@@ -137,26 +161,12 @@ export default class CurrentWeather extends Component {
                   },
                   {
                     tag: 'p',
-                    content: `Sunrise: <span>${Component.getTimeFromEpoch(
-                      this.state.sunrise,
-                      {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false
-                      }
-                    )}</span>`,
+                    content: `Sunrise: <span>${this.state.sunrise}</span>`,
                     classList: ['description-data__item']
                   },
                   {
                     tag: 'p',
-                    content: `Sunset: <span>${Component.getTimeFromEpoch(
-                      this.state.sunset,
-                      {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false
-                      }
-                    )}</span>`,
+                    content: `Sunset: <span>${this.state.sunset}</span>`,
                     classList: ['description-data__item']
                   }
                 ]

@@ -1,7 +1,12 @@
 .forecast-daily {
   display: flex;
+  justify-content: space-between;
   overflow-x: hidden;
   padding-bottom: 16px;
+
+  &:empty {
+    display: none;
+  }
 
   &:hover {
     overflow-x: overlay;

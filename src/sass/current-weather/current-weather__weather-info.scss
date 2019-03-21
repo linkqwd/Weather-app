@@ -1,6 +1,15 @@
 .current-weather__weather-info {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  margin: -15px -15px;
+  & > div {
+    margin: 15px;
+  }
+
+  @include screen(600px) {
+    justify-content: space-around;
+    margin: 0 -15px;
+  }
 }

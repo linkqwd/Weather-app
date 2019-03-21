@@ -21,7 +21,7 @@ export default class WeatherForecastItem extends Component {
       children: [
         {
           tag: 'span',
-          classList: [...visualClsIcon]
+          classList: [...visualClsIcon, `weather-icon_${this.props.icon}`]
         },
         {
           tag: 'span',

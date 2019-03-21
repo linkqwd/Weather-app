@@ -5,4 +5,8 @@
   right: 0;
   text-align: center;
   pointer-events: none;
+
+  @include screen(800px) {
+    position: static;
+  }
 }

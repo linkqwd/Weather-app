@@ -25,7 +25,6 @@ export default class WeatherForecastDaily extends Component {
   }
 
   render() {
-    console.log(this.state);
     const dailyItemsArray = this.state.fDayX.map(item => {
       return {
         tag: 'div',
@@ -44,6 +43,7 @@ export default class WeatherForecastDaily extends Component {
             props: {
               tValue: Math.round(item.main.temp),
               tUnit: '&deg;',
+              icon: item.weather[0].icon,
               iconSmall: true,
               valueSmall: true
             }

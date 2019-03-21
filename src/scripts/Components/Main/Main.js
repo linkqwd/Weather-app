@@ -31,7 +31,7 @@ export default class Main extends Component {
       } else {
         return stack;
       }
-    }, 9999);
+    }, Infinity);
   }
 
   relativeDayOfMonth(arg = 0) {
@@ -42,7 +42,7 @@ export default class Main extends Component {
   updateMySelf(state) {
     const currentWeather = {
       city: `${state.currentWeather.name}, ${state.currentWeather.sys.country}`,
-      dt: state.currentWeather.dt,
+      dt: 'Today',
       tValue: Math.round(state.currentWeather.main.temp),
       tMinValue: Math.round(state.currentWeather.main.temp_min),
       tUnit: '&#8451',
@@ -52,7 +52,11 @@ export default class Main extends Component {
       pressure: Math.round(state.currentWeather.main.pressure),
       humidity: `${state.currentWeather.main.humidity}%`,
       sunrise: state.currentWeather.sys.sunrise,
-      sunset: state.currentWeather.sys.sunset
+      sunset: state.currentWeather.sys.sunset,
+      descr: `${state.currentWeather.weather[0].main}, ${
+        state.currentWeather.weather[0].description
+      }`,
+      icon: state.currentWeather.weather[0].icon
     };
 
     const weeklyForecast = {
@@ -87,7 +91,7 @@ export default class Main extends Component {
       }
     }
 
-    for (let key in weeklyForecast) {
+    Object.keys(weeklyForecast).forEach((key, index) => {
       weeklyForecast[key].maxTemp = Math.round(
         this.defineMaxValue(weeklyForecast[key].data, 'main.temp')
       );
@@ -97,7 +101,13 @@ export default class Main extends Component {
       weeklyForecast[key].maxWindSpeed = Math.round(
         this.defineMaxValue(weeklyForecast[key].data, 'wind.speed')
       );
-    }
+
+      weeklyForecast[key].sunrise = currentWeather.sunrise - 129 * index;
+      weeklyForecast[key].sunset = currentWeather.sunset + 111 * index;
+    });
+
+    currentWeather.sunrise = Component.getTimeFromEpoch(currentWeather.sunrise);
+    currentWeather.sunset = Component.getTimeFromEpoch(currentWeather.sunset);
 
     const dailyForecast = {
       fDayX: weeklyForecast.fDay0.data

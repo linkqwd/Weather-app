@@ -56,17 +56,23 @@ export default class Header extends Component {
               {
                 tag: 'span',
                 classList: ['current-date__dddd'],
-                content: 'Sunday'
+                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                  weekday: 'long'
+                })
               },
               {
                 tag: 'span',
                 classList: ['current-date__dd'],
-                content: '15'
+                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                  day: 'numeric'
+                })
               },
               {
                 tag: 'span',
                 classList: ['current-date__mmmm'],
-                content: 'May'
+                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                  month: 'long'
+                })
               }
             ]
           }
