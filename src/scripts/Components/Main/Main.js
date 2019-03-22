@@ -40,9 +40,9 @@ export default class Main extends Component {
   }
 
   updateMySelf(state) {
-    console.log(state);
     const currentWeather = {
       city: `${state.currentWeather.name}, ${state.currentWeather.sys.country}`,
+      cityId: state.currentWeather.id,
       dt: 'Today',
       tValue: Math.round(state.currentWeather.main.temp),
       tMinValue: Math.round(state.currentWeather.main.temp_min),
@@ -93,8 +93,6 @@ export default class Main extends Component {
     }
 
     Object.keys(weeklyForecast).forEach((key, index) => {
-      const filteredValue = Math.round(weeklyForecast[key].data.length / 2);
-
       weeklyForecast[key].maxTemp = Math.round(
         this.defineMaxValue(weeklyForecast[key].data, 'main.temp')
       );
@@ -105,15 +103,25 @@ export default class Main extends Component {
         this.defineMaxValue(weeklyForecast[key].data, 'wind.speed')
       );
 
+      weeklyForecast[key].sunrise = currentWeather.sunrise - 129 * index;
+      weeklyForecast[key].sunset = currentWeather.sunset + 111 * index;
+
+      let filteredValue;
+
+      if (weeklyForecast[key].data.length === 1) {
+        filteredValue = 0;
+      } else if (weeklyForecast[key].data.length === 0) {
+        return;
+      } else {
+        filteredValue = Math.round(weeklyForecast[key].data.length / 2);
+      }
+
       weeklyForecast[key].icon =
         weeklyForecast[key].data[filteredValue].weather[0].icon;
 
       weeklyForecast[key].descr = `${
         weeklyForecast[key].data[filteredValue].weather[0].main
       }, ${weeklyForecast[key].data[filteredValue].weather[0].description}`;
-
-      weeklyForecast[key].sunrise = currentWeather.sunrise - 129 * index;
-      weeklyForecast[key].sunset = currentWeather.sunset + 111 * index;
     });
 
     currentWeather.sunrise = Component.getTimeFromEpoch(currentWeather.sunrise);
@@ -128,6 +136,7 @@ export default class Main extends Component {
       dailyForecast: dailyForecast,
       weeklyForecast: weeklyForecast
     });
+    console.log(this.state);
   }
 
   init() {

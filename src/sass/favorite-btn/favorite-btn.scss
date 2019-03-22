@@ -1,0 +1,27 @@
+.favorite-btn {
+  background: $border-color;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  @extend .transition-125;
+
+  &:hover {
+    background: mix(black, $border-color, 20);
+  }
+
+  &:focus {
+    outline: none;
+    // box-shadow: 0 0 0 2px #a3d4f7;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    background: url(../../../src/icons/rating-star.svg) no-repeat center;
+  }
+}

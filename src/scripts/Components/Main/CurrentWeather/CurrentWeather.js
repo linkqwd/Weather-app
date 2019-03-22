@@ -1,6 +1,7 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
 import { AppState } from '../../../Services';
+import { FavouriteBtn } from '../../Main/FavouriteLocations/';
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -9,7 +10,6 @@ export default class CurrentWeather extends Component {
   }
 
   updateMySelf(state) {
-    console.log(state);
     const newState = {
       tValue:
         'currentWeather' in state ? state.currentWeather.tValue : state.maxTemp,
@@ -67,22 +67,22 @@ export default class CurrentWeather extends Component {
           {
             tag: 'div',
             classList: 'current-weather__head-wrap',
+
             children: [
               {
                 tag: 'h2',
                 classList: 'current-weather__header',
-                content: this.state.city
-              },
-              {
-                tag: 'button',
-                content: '+',
-                classList: ['current-weather__favorite-btn', 'favorite-btn'],
+                content: this.state.city,
                 attributes: [
                   {
-                    name: 'type',
-                    value: 'button'
+                    name: 'id',
+                    value: this.state.cityId
                   }
                 ]
+              },
+              {
+                tag: FavouriteBtn,
+                props: {}
               }
             ]
           },

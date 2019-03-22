@@ -1,18 +1,12 @@
 import Component from '../../Framework/Component';
-import { FavouriteLocations } from './FavouriteLocations';
-import { SearchHistory } from './SearchHistory';
+import { FavouriteLocations } from '../Main/FavouriteLocations';
+import { SearchHistory } from '../Main/SearchHistory';
 import { WeatherDataService } from '../../Services';
 import { AppState } from '../../Services';
 
 export default class SearchBar extends Component {
   constructor(host, props) {
     super(host, props);
-  }
-
-  init() {
-    ['handleMenuToggle', 'handleSearchClick', 'handleFormSubmit'].forEach(
-      methodName => (this[methodName] = this[methodName].bind(this))
-    );
   }
 
   handleSearchClick() {
@@ -31,6 +25,20 @@ export default class SearchBar extends Component {
       });
   }
 
+  favItemSearchCall(id) {
+    WeatherDataService.getCurrentWeatherById(id)
+      .then(currentWeatherPromise => currentWeatherPromise)
+      .then(currentWeatherPromise => {
+        WeatherDataService.getWeatherForecastById(id).then(foreCastPromise => {
+          AppState.update('SEARCH-RESULT', {
+            currentWeather: currentWeatherPromise,
+            foreCast: foreCastPromise
+          });
+        });
+      });
+    this.handleMenuToggle();
+  }
+
   handleFormSubmit(e) {
     e.preventDefault();
     const searchInput = document.getElementById('search-input');
@@ -44,6 +52,15 @@ export default class SearchBar extends Component {
   handleMenuToggle() {
     const menu = document.getElementById('menu-option');
     menu.classList.toggle('search-menu__opened');
+  }
+
+  init() {
+    [
+      'handleMenuToggle',
+      'handleSearchClick',
+      'handleFormSubmit',
+      'favItemSearchCall'
+    ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
   }
 
   render() {
@@ -148,7 +165,8 @@ export default class SearchBar extends Component {
             ],
             children: [
               {
-                tag: FavouriteLocations
+                tag: FavouriteLocations,
+                props: { favItemSearchCall: this.favItemSearchCall }
               },
               {
                 tag: SearchHistory

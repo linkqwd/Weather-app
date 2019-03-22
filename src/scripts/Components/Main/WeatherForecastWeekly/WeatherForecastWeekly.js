@@ -21,8 +21,6 @@ export default class WeatherForecastWeekly extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     const domElements = Object.keys(this.props).map(item => {
       if (item === 'fDay0')
         return {
@@ -50,7 +48,10 @@ export default class WeatherForecastWeekly extends Component {
               tag: WeatherForecastItem,
               props: {
                 tValue: this.props.fDay0.currentWeather.tValue,
-                tValueMin: this.props[item].minTemp,
+                tValueMin:
+                  this.props[item].minTemp === Infinity
+                    ? this.props.fDay0.currentWeather.tMinValue
+                    : this.props[item].minTemp,
                 icon: this.props.fDay0.currentWeather.icon,
                 tUnit: '&deg;',
                 valueSmall: true

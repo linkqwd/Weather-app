@@ -10,10 +10,15 @@ $light-font-color: #666;
 $border-color: #bbb;
 $card-bg: #fff;
 $card-border: #ddd;
+$yellow: #f3c032;
 
 .transition-225 {
   transition: all 225ms ease-in-out;
   transition-delay: 25ms;
+}
+
+.transition-125 {
+  transition: all 125ms ease-in-out;
 }
 
 @import '../main';
