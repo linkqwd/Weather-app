@@ -75,8 +75,8 @@ export default class CurrentWeather extends Component {
               },
               {
                 tag: 'button',
-                content: '&#9734;',
-                classList: 'current-weather__favorite-btn',
+                content: '+',
+                classList: ['current-weather__favorite-btn', 'favorite-btn'],
                 attributes: [
                   {
                     name: 'type',
@@ -143,22 +143,34 @@ export default class CurrentWeather extends Component {
                   {
                     tag: 'p',
                     content: `Pressure: <span>${this.state.pressure}</span>`,
-                    classList: ['description-data__item']
+                    classList: [
+                      'description-data__item',
+                      'description-data__icon_pressure'
+                    ]
                   },
                   {
                     tag: 'p',
                     content: `Humidity: <span>${this.state.humidity}</span>`,
-                    classList: ['description-data__item']
+                    classList: [
+                      'description-data__item',
+                      'description-data__icon_humidity'
+                    ]
                   },
                   {
                     tag: 'p',
                     content: `Sunrise: <span>${this.state.sunrise}</span>`,
-                    classList: ['description-data__item']
+                    classList: [
+                      'description-data__item',
+                      'description-data__icon_sunrise'
+                    ]
                   },
                   {
                     tag: 'p',
                     content: `Sunset: <span>${this.state.sunset}</span>`,
-                    classList: ['description-data__item']
+                    classList: [
+                      'description-data__item',
+                      'description-data__icon_sunset'
+                    ]
                   }
                 ]
               }

@@ -93,9 +93,7 @@ export default class Main extends Component {
     }
 
     Object.keys(weeklyForecast).forEach((key, index) => {
-      const itemToShowAmongArrayItems = Math.round(
-        weeklyForecast[key].data[0] / 2
-      );
+      const filteredValue = Math.round(weeklyForecast[key].data.length / 2);
 
       weeklyForecast[key].maxTemp = Math.round(
         this.defineMaxValue(weeklyForecast[key].data, 'main.temp')
@@ -107,11 +105,12 @@ export default class Main extends Component {
         this.defineMaxValue(weeklyForecast[key].data, 'wind.speed')
       );
 
-      weeklyForecast[key].icon = weeklyForecast[key].data[1].weather[0].icon;
+      weeklyForecast[key].icon =
+        weeklyForecast[key].data[filteredValue].weather[0].icon;
 
       weeklyForecast[key].descr = `${
-        weeklyForecast[key].data[1].weather[0].main
-      }, ${weeklyForecast[key].data[1].weather[0].description}`;
+        weeklyForecast[key].data[filteredValue].weather[0].main
+      }, ${weeklyForecast[key].data[filteredValue].weather[0].description}`;
 
       weeklyForecast[key].sunrise = currentWeather.sunrise - 129 * index;
       weeklyForecast[key].sunset = currentWeather.sunset + 111 * index;
