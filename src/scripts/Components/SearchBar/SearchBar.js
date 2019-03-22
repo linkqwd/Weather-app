@@ -106,7 +106,7 @@ export default class SearchBar extends Component {
                   },
                   {
                     name: 'value',
-                    value: 'Kyiv, ua'
+                    value: 'Kiev, ua'
                   },
                   {
                     name: 'autocomplete',

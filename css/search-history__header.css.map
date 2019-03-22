@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "../src/sass/search-history/search-history__header.scss"
+    ],
+    "names": [],
+    "file": "search-history__header.css"
+}

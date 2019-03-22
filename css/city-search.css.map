@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,MAAM;EACd,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,MAAM;EACf,UAAU,EAAE,WAAW;CACxB",
+    "sources": [
+        "../src/sass/city-search/city-search.scss"
+    ],
+    "names": [],
+    "file": "city-search.css"
+}

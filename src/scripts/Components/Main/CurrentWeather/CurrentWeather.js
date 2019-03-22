@@ -40,15 +40,8 @@ export default class CurrentWeather extends Component {
           : Component.getTimeFromEpoch(state.data[0].dt, { weekday: 'long' }),
 
       descr:
-        'currentWeather' in state
-          ? state.currentWeather.descr
-          : `${state.data[5].weather[0].main}, ${
-              state.data[5].weather[0].description
-            }`,
-      icon:
-        'currentWeather' in state
-          ? state.currentWeather.icon
-          : state.data[5].weather[0].icon,
+        'currentWeather' in state ? state.currentWeather.descr : state.descr,
+      icon: 'currentWeather' in state ? state.currentWeather.icon : state.icon,
 
       sunrise: Component.getTimeFromEpoch(state.sunrise),
       sunset: Component.getTimeFromEpoch(state.sunset)
@@ -66,8 +59,6 @@ export default class CurrentWeather extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     return [
       {
         tag: 'div',
@@ -131,7 +122,7 @@ export default class CurrentWeather extends Component {
                     attributes: [
                       {
                         name: 'style',
-                        value: `transform: rotate(${this.state.wDeg - 45}deg)`
+                        value: `transform: rotate(${this.state.wDeg - 190}deg)`
                       }
                     ]
                   },

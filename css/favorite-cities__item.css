@@ -1,0 +1,8 @@
+.favorite-cities__item {
+  cursor: pointer;
+}
+
+.favorite-cities__item + .favorite-cities__item {
+  margin-top: 6px;
+}
+/*# sourceMappingURL=favorite-cities__item.css.map */

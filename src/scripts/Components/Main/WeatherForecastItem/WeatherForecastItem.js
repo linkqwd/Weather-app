@@ -36,7 +36,11 @@ export default class WeatherForecastItem extends Component {
       ]
     };
 
-    if (this.props.tValueMin) {
+    if (this.props.tValueMin !== undefined) {
+      if (this.props.tValueMin === -0 || this.props.tValueMin === 0) {
+        this.props.tValueMin = '0';
+      }
+
       dataItem.children.push({
         tag: 'span',
         content: this.props.tValueMin,

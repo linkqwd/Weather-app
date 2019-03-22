@@ -1,0 +1,8 @@
+.search-history__item {
+  cursor: pointer;
+}
+
+.search-history__item + .search-history__item {
+  margin-top: 6px;
+}
+/*# sourceMappingURL=search-history__item.css.map */

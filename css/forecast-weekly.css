@@ -1,0 +1,13 @@
+.forecast-weekly {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.forecast-weekly .tempreture-data__icon {
+  width: 100%;
+}
+/*# sourceMappingURL=forecast-weekly.css.map */

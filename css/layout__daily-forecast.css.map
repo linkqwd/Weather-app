@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,UAAU,EAAE,IAAI;CACjB",
+    "sources": [
+        "../src/sass/layout/layout__daily-forecast.scss"
+    ],
+    "names": [],
+    "file": "layout__daily-forecast.css"
+}

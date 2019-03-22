@@ -1,0 +1,8 @@
+.current-date__dddd {
+  font-weight: 500;
+}
+
+.current-date__dddd:after {
+  content: ', ';
+}
+/*# sourceMappingURL=current-date__dddd.css.map */

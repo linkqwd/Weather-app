@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACV,YAAY,EAAE,IAAI;CACnB",
+    "sources": [
+        "../src/sass/head/head__logo.scss"
+    ],
+    "names": [],
+    "file": "head__logo.css"
+}

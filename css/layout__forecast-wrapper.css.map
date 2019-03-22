@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/sass/layout/layout__forecast-wrapper.scss"
+    ],
+    "names": [],
+    "file": "layout__forecast-wrapper.css"
+}

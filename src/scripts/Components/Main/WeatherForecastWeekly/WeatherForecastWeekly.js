@@ -49,8 +49,8 @@ export default class WeatherForecastWeekly extends Component {
             {
               tag: WeatherForecastItem,
               props: {
-                tValue: this.props.fDay0.currentWeather.tValue + '',
-                tValueMin: this.props.fDay0.currentWeather.tValue + '',
+                tValue: this.props.fDay0.currentWeather.tValue,
+                tValueMin: this.props[item].minTemp,
                 icon: this.props.fDay0.currentWeather.icon,
                 tUnit: '&deg;',
                 valueSmall: true
@@ -85,9 +85,9 @@ export default class WeatherForecastWeekly extends Component {
           {
             tag: WeatherForecastItem,
             props: {
-              tValue: this.props[item].maxTemp + '',
-              tValueMin: this.props[item].minTemp + '',
-              icon: this.props[item].data[5].weather[0].icon,
+              tValue: this.props[item].maxTemp,
+              tValueMin: this.props[item].minTemp,
+              icon: this.props[item].icon,
               tUnit: '&deg;',
               valueSmall: true
             }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,wBAAwB,CAAC;EACvB,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "../src/sass/favorite-cities/favorite-cities__header.scss"
+    ],
+    "names": [],
+    "file": "favorite-cities__header.css"
+}
