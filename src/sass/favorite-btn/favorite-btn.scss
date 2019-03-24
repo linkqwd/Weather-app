@@ -3,11 +3,7 @@
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  @extend .transition-125;
-
-  &:hover {
-    background: mix(black, $border-color, 20);
-  }
+  @extend .transition-25;
 
   &:focus {
     outline: none;

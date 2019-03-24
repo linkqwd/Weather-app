@@ -3,6 +3,7 @@ import { CurrentWeather } from './CurrentWeather';
 import { WeatherForecastDaily } from './WeatherForecastDaily';
 import { WeatherForecastWeekly } from './WeatherForecastWeekly';
 import { AppState } from '../../Services';
+import { FavouriteBtn } from '../Main/FavouriteLocations/';
 
 export default class Main extends Component {
   constructor(host, props) {
@@ -136,7 +137,6 @@ export default class Main extends Component {
       dailyForecast: dailyForecast,
       weeklyForecast: weeklyForecast
     });
-    console.log(this.state);
   }
 
   init() {
@@ -160,6 +160,28 @@ export default class Main extends Component {
             tag: 'div',
             classList: 'layout__today-wrapper',
             children: [
+              {
+                tag: 'div',
+                classList: 'current-weather__head-wrap',
+
+                children: [
+                  {
+                    tag: 'h2',
+                    classList: 'current-weather__header',
+                    content: this.state.currentWeather.city,
+                    attributes: [
+                      {
+                        name: 'id',
+                        value: this.state.currentWeather.cityId
+                      }
+                    ]
+                  },
+                  {
+                    tag: FavouriteBtn,
+                    props: {}
+                  }
+                ]
+              },
               {
                 tag: CurrentWeather,
                 props: this.state.currentWeather

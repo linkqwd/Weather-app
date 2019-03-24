@@ -11,31 +11,39 @@ export default class SearchBar extends Component {
 
   handleSearchClick() {
     const searchInput = document.getElementById('search-input');
-    WeatherDataService.getCurrentWeather(searchInput.value)
-      .then(currentWeatherPromise => currentWeatherPromise)
-      .then(currentWeatherPromise => {
+    WeatherDataService.getCurrentWeather(searchInput.value).then(
+      currentWeatherPromise => {
         WeatherDataService.getWeatherForecast(searchInput.value).then(
           foreCastPromise => {
             AppState.update('SEARCH-RESULT', {
               currentWeather: currentWeatherPromise,
               foreCast: foreCastPromise
             });
+            AppState.update('HISTORY', {
+              [currentWeatherPromise.id]: {
+                cityName: `${currentWeatherPromise.name}, ${
+                  currentWeatherPromise.sys.country
+                }`,
+                cityId: currentWeatherPromise.id
+              }
+            });
           }
         );
-      });
+      }
+    );
   }
 
-  favItemSearchCall(id) {
-    WeatherDataService.getCurrentWeatherById(id)
-      .then(currentWeatherPromise => currentWeatherPromise)
-      .then(currentWeatherPromise => {
-        WeatherDataService.getWeatherForecastById(id).then(foreCastPromise => {
-          AppState.update('SEARCH-RESULT', {
-            currentWeather: currentWeatherPromise,
-            foreCast: foreCastPromise
-          });
+  itemSearchCallById(id) {
+    console.log(id);
+    WeatherDataService.getCurrentWeatherById(id).then(currentWeatherPromise => {
+      WeatherDataService.getWeatherForecastById(id).then(foreCastPromise => {
+        console.log(id);
+        AppState.update('SEARCH-RESULT', {
+          currentWeather: currentWeatherPromise,
+          foreCast: foreCastPromise
         });
       });
+    });
     this.handleMenuToggle();
   }
 
@@ -59,7 +67,7 @@ export default class SearchBar extends Component {
       'handleMenuToggle',
       'handleSearchClick',
       'handleFormSubmit',
-      'favItemSearchCall'
+      'itemSearchCallById'
     ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
   }
 
@@ -166,10 +174,11 @@ export default class SearchBar extends Component {
             children: [
               {
                 tag: FavouriteLocations,
-                props: { favItemSearchCall: this.favItemSearchCall }
+                props: { itemSearchCallById: this.itemSearchCallById }
               },
               {
-                tag: SearchHistory
+                tag: SearchHistory,
+                props: { itemSearchCallById: this.itemSearchCallById }
               }
             ]
           }

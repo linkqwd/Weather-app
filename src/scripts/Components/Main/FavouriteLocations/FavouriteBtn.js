@@ -9,43 +9,58 @@ export default class FavouriteBtn extends Component {
 
   checkIfCityIsfav() {
     setTimeout(() => {
-      const currentCityName = document.querySelector(
-        '.current-weather__header'
+      const currentCity = document.querySelector('.current-weather__header');
+
+      const currentItemInLocalStorage = window.localStorage.getItem(
+        JSON.stringify(currentCity.id)
       );
 
-      console.log(this.state[currentCityName.id]);
-    }, 100);
+      if (currentItemInLocalStorage === null) return;
+
+      if (JSON.parse(currentItemInLocalStorage).id === currentCity.id) {
+        const favBtn = document.querySelector('.favorite-btn');
+        favBtn.classList.add('favorite-btn_active');
+      }
+    }, 0);
   }
 
   updateMySelf(state) {
-    this.updateState(state);
+    this.state = Object.assign({}, this.state, state);
   }
 
-  handleFavAdd(e) {
-    console.log(e);
-    e.target.classList.toggle('favorite-btn_active');
+  handleFavAction(e) {
     const currentCityName = document.querySelector('.current-weather__header');
 
-    const result = {
+    let result = {
       [currentCityName.id]: {
         cityName: currentCityName.innerHTML,
         id: currentCityName.id
       }
     };
 
-    window.localStorage.setItem(
-      JSON.stringify(currentCityName.id),
-      JSON.stringify({
-        cityName: currentCityName.innerHTML,
-        id: currentCityName.id
-      })
-    );
+    if (e.target.classList.contains('favorite-btn_active')) {
+      e.target.classList.remove('favorite-btn_active');
+      window.localStorage.removeItem(JSON.stringify(currentCityName.id));
+
+      result = {
+        [currentCityName.id]: null
+      };
+    } else {
+      e.target.classList.add('favorite-btn_active');
+      window.localStorage.setItem(
+        JSON.stringify(currentCityName.id),
+        JSON.stringify({
+          cityName: currentCityName.innerHTML,
+          id: currentCityName.id
+        })
+      );
+    }
 
     AppState.update('FAVOURITE', result);
   }
 
   init() {
-    ['handleFavAdd', 'checkIfCityIsfav', 'updateMySelf'].forEach(
+    ['checkIfCityIsfav', 'updateMySelf'].forEach(
       methodName => (this[methodName] = this[methodName].bind(this))
     );
 
@@ -70,7 +85,7 @@ export default class FavouriteBtn extends Component {
         eventHandler: [
           {
             eventType: 'click',
-            handler: this.handleFavAdd
+            handler: this.handleFavAction
           }
         ],
         attributes: [

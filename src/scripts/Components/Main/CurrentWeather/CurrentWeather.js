@@ -1,7 +1,6 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
 import { AppState } from '../../../Services';
-import { FavouriteBtn } from '../../Main/FavouriteLocations/';
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -64,28 +63,6 @@ export default class CurrentWeather extends Component {
         tag: 'div',
         classList: ['current-weather'],
         children: [
-          {
-            tag: 'div',
-            classList: 'current-weather__head-wrap',
-
-            children: [
-              {
-                tag: 'h2',
-                classList: 'current-weather__header',
-                content: this.state.city,
-                attributes: [
-                  {
-                    name: 'id',
-                    value: this.state.cityId
-                  }
-                ]
-              },
-              {
-                tag: FavouriteBtn,
-                props: {}
-              }
-            ]
-          },
           {
             tag: 'p',
             classList: 'current-weather__day',

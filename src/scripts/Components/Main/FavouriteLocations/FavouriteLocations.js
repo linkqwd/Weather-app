@@ -12,7 +12,43 @@ export default class FavouriteLocations extends Component {
   }
 
   chooseFavCity(e) {
-    this.props.favItemSearchCall(e.target.id);
+    this.props.itemSearchCallById(
+      e.target.closest('.favorite-cities__item').id
+    );
+  }
+
+  buildFavDomItems() {
+    const domItems = Object.keys(this.state)
+      .filter(item => {
+        return this.state[item] !== null ? true : false;
+      })
+      .map(item => {
+        return {
+          tag: 'li',
+          classList: ['favorite-cities__item'],
+          eventHandler: [
+            {
+              eventType: 'click',
+              handler: this.chooseFavCity
+            }
+          ],
+          attributes: [
+            {
+              name: 'id',
+              value: this.state[item].id
+            }
+          ],
+          children: [
+            {
+              tag: 'a',
+              classList: ['favorite-cities__link'],
+              content: this.state[item].cityName
+            }
+          ]
+        };
+      });
+
+    return [...domItems];
   }
 
   init() {
@@ -36,30 +72,9 @@ export default class FavouriteLocations extends Component {
     if (
       Object.keys(this.state).length === 0 &&
       this.state.constructor === Object
-    )
+    ) {
       return [];
-
-    const domItems = [];
-
-    Object.keys(this.state).forEach(item => {
-      domItems.push({
-        tag: 'li',
-        content: this.state[item].cityName,
-        classList: ['favorite-cities__item'],
-        eventHandler: [
-          {
-            eventType: 'click',
-            handler: this.chooseFavCity
-          }
-        ],
-        attributes: [
-          {
-            name: 'id',
-            value: this.state[item].id
-          }
-        ]
-      });
-    });
+    }
 
     return [
       {
@@ -74,7 +89,7 @@ export default class FavouriteLocations extends Component {
           {
             tag: 'ul',
             classList: ['favorite-cities__list'],
-            children: [...domItems]
+            children: this.buildFavDomItems()
           }
         ]
       }
