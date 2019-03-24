@@ -3,6 +3,7 @@ import Component from '../../../Framework/Component';
 export default class WeatherForecastItem extends Component {
   constructor(host, props) {
     super(host, props);
+    this.props.tUnit = '&#8451';
   }
 
   render() {

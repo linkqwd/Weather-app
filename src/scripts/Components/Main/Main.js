@@ -48,8 +48,8 @@ export default class Main extends Component {
       tValue: Math.round(state.currentWeather.main.temp),
       tMinValue: Math.round(state.currentWeather.main.temp_min),
       tUnit: '&#8451',
-      wSpeed: state.currentWeather.wind.speed,
-      wUnit: 'mph',
+      wSpeed: Math.round(state.currentWeather.wind.speed / 0.621371),
+      wUnit: 'Km/h',
       wDeg: state.currentWeather.wind.deg,
       pressure: Math.round(state.currentWeather.main.pressure),
       humidity: `${state.currentWeather.main.humidity}%`,
@@ -101,7 +101,7 @@ export default class Main extends Component {
         this.defineMinValue(weeklyForecast[key].data, 'main.temp')
       );
       weeklyForecast[key].maxWindSpeed = Math.round(
-        this.defineMaxValue(weeklyForecast[key].data, 'wind.speed')
+        this.defineMaxValue(weeklyForecast[key].data, 'wind.speed') / 0.621371
       );
 
       weeklyForecast[key].sunrise = currentWeather.sunrise - 129 * index;
