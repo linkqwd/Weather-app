@@ -12,9 +12,7 @@ export default class FavouriteLocations extends Component {
   }
 
   chooseFavCity(e) {
-    this.props.itemSearchCallById(
-      e.target.closest('.favorite-cities__item').id
-    );
+    this.props.itemSearchCallById(e.target.id);
   }
 
   buildFavDomItems() {
@@ -26,23 +24,23 @@ export default class FavouriteLocations extends Component {
         return {
           tag: 'li',
           classList: ['favorite-cities__item'],
-          eventHandler: [
-            {
-              eventType: 'click',
-              handler: this.chooseFavCity
-            }
-          ],
-          attributes: [
-            {
-              name: 'id',
-              value: this.state[item].id
-            }
-          ],
           children: [
             {
               tag: 'a',
               classList: ['favorite-cities__link'],
-              content: this.state[item].cityName
+              content: this.state[item].cityName,
+              attributes: [
+                {
+                  name: 'id',
+                  value: this.state[item].id
+                }
+              ],
+              eventHandler: [
+                {
+                  eventType: 'click',
+                  handler: this.chooseFavCity
+                }
+              ]
             }
           ]
         };
@@ -56,24 +54,30 @@ export default class FavouriteLocations extends Component {
       methodName => (this[methodName] = this[methodName].bind(this))
     );
 
-    const favListFromLocalStorage = {};
-    for (var key in window.localStorage) {
-      if (window.localStorage.hasOwnProperty(key)) {
-        favListFromLocalStorage[key.slice(1, -1)] = JSON.parse(
-          window.localStorage[key]
-        );
-      }
+    if (localStorage.getItem('favourite') !== null) {
+      this.state = JSON.parse(localStorage.getItem('favourite'));
     }
-
-    this.state = favListFromLocalStorage;
   }
 
   render() {
-    if (
-      Object.keys(this.state).length === 0 &&
-      this.state.constructor === Object
-    ) {
-      return [];
+    if (this.state === undefined || this.state === null) {
+      return [
+        {
+          tag: 'section',
+          classList: ['favorite-cities'],
+          children: [
+            {
+              tag: 'h3',
+              content: 'Favourite Cities',
+              classList: ['search-history__header']
+            },
+            {
+              tag: 'p',
+              content: '<i>Favourite list is empty</i>'
+            }
+          ]
+        }
+      ];
     }
 
     return [

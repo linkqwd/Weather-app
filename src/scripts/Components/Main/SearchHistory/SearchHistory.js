@@ -9,33 +9,32 @@ export default class SearchHistory extends Component {
 
   updateMySelf(state) {
     this.updateState(state);
-    console.log(this.state);
-    window.localStorage.setItem('History', JSON.stringify(this.state));
+    window.localStorage.setItem('history', JSON.stringify(this.state));
   }
 
   buildDomELements() {
     const domItems = Object.keys(this.state).map(item => {
-      console.log(item);
       return {
         tag: 'li',
         classList: ['search-history__item'],
-        eventHandler: [
-          {
-            eventType: 'click',
-            handler: this.chooseFavCity
-          }
-        ],
-        attributes: [
-          {
-            name: 'id',
-            value: item
-          }
-        ],
+
         children: [
           {
             tag: 'a',
             classList: ['search-history__link'],
-            content: this.state[item].cityName
+            content: this.state[item].cityName,
+            eventHandler: [
+              {
+                eventType: 'click',
+                handler: this.chooseFavCity
+              }
+            ],
+            attributes: [
+              {
+                name: 'id',
+                value: item
+              }
+            ]
           }
         ]
       };
@@ -45,7 +44,7 @@ export default class SearchHistory extends Component {
   }
 
   chooseFavCity(e) {
-    this.props.itemSearchCallById(e.target.closest('.search-history__item').id);
+    this.props.itemSearchCallById(e.target.id);
   }
 
   init() {
@@ -53,11 +52,30 @@ export default class SearchHistory extends Component {
       methodName => (this[methodName] = this[methodName].bind(this))
     );
 
-    this.state = JSON.parse(localStorage.getItem('History'));
+    if (localStorage.getItem('history') !== null) {
+      this.state = JSON.parse(localStorage.getItem('history'));
+    }
   }
 
   render() {
-    if (this.state === undefined) return [];
+    if (this.state === undefined || this.state === null)
+      return [
+        {
+          tag: 'section',
+          classList: ['search-history'],
+          children: [
+            {
+              tag: 'h3',
+              content: 'Search history',
+              classList: ['search-history__header']
+            },
+            {
+              tag: 'p',
+              content: '<i>Search history is empty</i>'
+            }
+          ]
+        }
+      ];
 
     return [
       {
