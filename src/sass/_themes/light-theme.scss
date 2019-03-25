@@ -21,4 +21,88 @@ $yellow: #f3c032;
   transition: all 25ms ease-in-out;
 }
 
+.transition-125 {
+  transition: all 125ms ease-in-out;
+}
+
+.gradient-1-10 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#9ecff0, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-11-20 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#b4dcf8, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-21-30 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#c3e3fa, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-31-40 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#d3eafb, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-41-50 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#e2f1fc, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-51-60 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#ffefbc, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-61-70 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#ffe79b, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-71-80 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#ffdf79, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-81-90 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#ffd753, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
+.gradient-91-100 {
+  background: linear-gradient(
+    to bottom,
+    rgba(#fad021, 1) -10%,
+    rgba(#fff, 1) 50%
+  );
+}
+
 @import '../main';

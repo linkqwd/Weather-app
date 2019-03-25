@@ -1,27 +1,8 @@
 .forecast-daily {
   display: flex;
-  justify-content: space-around;
-  overflow-x: hidden;
-  padding-bottom: 16px;
+  justify-content: center;
 
   &:empty {
     display: none;
-  }
-
-  &:hover {
-    overflow-x: overlay;
-  }
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
-  }
-
-  &::-webkit-scrollbar {
-    height: 8px;
-    border: 1px solid $card-border;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $primary;
   }
 }

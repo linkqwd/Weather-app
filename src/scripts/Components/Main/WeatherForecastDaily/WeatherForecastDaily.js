@@ -16,28 +16,17 @@ export default class WeatherForecastDaily extends Component {
     this.updateState(newState);
   }
 
-  init() {
-    ['updateMySelf'].forEach(
-      methodName => (this[methodName] = this[methodName].bind(this))
-    );
-
-    this.state = this.props;
-  }
-
-  render() {
+  buildHtmlElements() {
     const dailyItemsArray = this.state.fDayX.map(item => {
+      let graphicValue =
+        Math.round(item.main.temp) * 2 + 40 >= 1
+          ? Math.round(item.main.temp) * 2 + 40
+          : 3;
+
       return {
         tag: 'div',
         classList: ['forecast-daily__item'],
         children: [
-          {
-            tag: 'p',
-            classList: ['forecast-daily__time'],
-            content: Component.getTimeFromEpoch(item.dt, {
-              hour: 'numeric',
-              minute: 'numeric'
-            })
-          },
           {
             tag: WeatherForecastItem,
             props: {
@@ -47,16 +36,43 @@ export default class WeatherForecastDaily extends Component {
               iconSmall: true,
               valueSmall: true
             }
+          },
+          {
+            tag: 'p',
+            classList: ['forecast-daily__time'],
+            content: Component.getTimeFromEpoch(item.dt, {
+              hour: 'numeric',
+              minute: 'numeric'
+            })
+          },
+          {
+            tag: 'div',
+            classList: [
+              'forecast-daily__graphic',
+              `forecast-daily__graphic_height_${graphicValue}`
+            ]
           }
         ]
       };
     });
 
+    return [...dailyItemsArray];
+  }
+
+  init() {
+    ['updateMySelf'].forEach(
+      methodName => (this[methodName] = this[methodName].bind(this))
+    );
+
+    this.state = this.props;
+  }
+
+  render() {
     return [
       {
         tag: 'div',
         classList: ['forecast-daily', 'layout__daily-forecast'],
-        children: [...dailyItemsArray]
+        children: this.buildHtmlElements()
       }
     ];
   }

@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;CACpB",
+    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;EACnB,WAAW,EAAE,GAAG;CACjB",
     "sources": [
         "../src/sass/search-history/search-history__header.scss"
     ],

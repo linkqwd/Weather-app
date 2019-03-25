@@ -22,7 +22,7 @@ export default class WeatherForecastWeekly extends Component {
 
   render() {
     const domElements = Object.keys(this.props).map(item => {
-      if (item === 'fDay0')
+      if (item === 'fDay0') {
         return {
           tag: 'div',
           classList: 'forecast-weekly__item',
@@ -59,42 +59,43 @@ export default class WeatherForecastWeekly extends Component {
             }
           ]
         };
-
-      return {
-        tag: 'div',
-        classList: 'forecast-weekly__item',
-        eventHandler: [
-          {
-            eventType: 'click',
-            handler: this.chooseWeatherDay
-          }
-        ],
-        attributes: [
-          {
-            name: 'id',
-            value: `${[item]}`
-          }
-        ],
-        children: [
-          {
-            tag: 'p',
-            content: Component.getTimeFromEpoch(this.props[item].data[0].dt, {
-              weekday: 'long'
-            }),
-            classList: ['forecast-weekly__date']
-          },
-          {
-            tag: WeatherForecastItem,
-            props: {
-              tValue: this.props[item].maxTemp,
-              tValueMin: this.props[item].minTemp,
-              icon: this.props[item].icon,
-              tUnit: '&deg;',
-              valueSmall: true
+      } else {
+        return {
+          tag: 'div',
+          classList: 'forecast-weekly__item',
+          eventHandler: [
+            {
+              eventType: 'click',
+              handler: this.chooseWeatherDay
             }
-          }
-        ]
-      };
+          ],
+          attributes: [
+            {
+              name: 'id',
+              value: `${[item]}`
+            }
+          ],
+          children: [
+            {
+              tag: 'p',
+              content: Component.getTimeFromEpoch(this.props[item].data[0].dt, {
+                weekday: 'long'
+              }),
+              classList: ['forecast-weekly__date']
+            },
+            {
+              tag: WeatherForecastItem,
+              props: {
+                tValue: this.props[item].maxTemp,
+                tValueMin: this.props[item].minTemp,
+                icon: this.props[item].icon,
+                tUnit: '&deg;',
+                valueSmall: true
+              }
+            }
+          ]
+        };
+      }
     });
 
     return [

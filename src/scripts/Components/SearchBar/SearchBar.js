@@ -72,10 +72,10 @@ export default class SearchBar extends Component {
   }
 
   render() {
-    setTimeout(function() {
-      const click = document.getElementById('search-submit');
-      click.click();
-    }, 100);
+    // setTimeout(function() {
+    //   const click = document.getElementById('search-submit');
+    //   click.click();
+    // }, 100);
 
     return [
       {

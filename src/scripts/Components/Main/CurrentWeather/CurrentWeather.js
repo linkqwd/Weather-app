@@ -119,7 +119,9 @@ export default class CurrentWeather extends Component {
                 children: [
                   {
                     tag: 'p',
-                    content: `Pressure: <span>${this.state.pressure}</span>`,
+                    content: `Pressure: <span>${
+                      this.state.pressure
+                    } hPa</span>`,
                     classList: [
                       'description-data__item',
                       'description-data__icon_pressure'

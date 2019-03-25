@@ -1,0 +1,33 @@
+.description-data__icon {
+  position: relative;
+
+  &_pressure::before,
+  &_humidity::before,
+  &_sunrise::before,
+  &_sunset::before {
+    position: absolute;
+    left: -35px;
+    top: -8px;
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
+  &_pressure::before {
+    background: url(../../icons/weather-svg/pressure.svg) 7px 7px no-repeat;
+    background-size: 65% 65%;
+  }
+  &_humidity::before {
+    background: url(../../icons/weather-svg/humidity.svg) center no-repeat;
+    background-size: 90% 90%;
+  }
+  &_sunrise::before {
+    background: url(../../icons/weather-svg/sunrise.svg) center no-repeat;
+    background-size: 110% 110%;
+  }
+  &_sunset::before {
+    background: url(../../icons/weather-svg/sunset.svg) center no-repeat;
+    background-size: 110% 110%;
+  }
+}

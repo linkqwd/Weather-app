@@ -33,6 +33,10 @@ export default class SearchHistory extends Component {
               {
                 name: 'id',
                 value: item
+              },
+              {
+                name: 'href',
+                value: '#'
               }
             ]
           }

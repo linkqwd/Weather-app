@@ -4,8 +4,13 @@
   align-items: center;
   justify-content: space-between;
   margin: -15px -15px;
+
   & > div {
     margin: 15px;
+
+    &:first-child {
+      min-width: 170px;
+    }
   }
 
   @include screen(600px) {

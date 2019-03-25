@@ -33,6 +33,10 @@ export default class FavouriteLocations extends Component {
                 {
                   name: 'id',
                   value: this.state[item].id
+                },
+                {
+                  name: 'href',
+                  value: '#'
                 }
               ],
               eventHandler: [
