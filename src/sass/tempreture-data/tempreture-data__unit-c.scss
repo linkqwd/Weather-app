@@ -1,0 +1,10 @@
+.tempreture-data__unit-c {
+  padding: 2px;
+  cursor: pointer;
+  color: $extra-light-font-color;
+  @extend .transition-225;
+
+  &:hover {
+    color: $base-font-color;
+  }
+}

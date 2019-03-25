@@ -47,7 +47,7 @@ export default class Main extends Component {
       dt: 'Today',
       tValue: Math.round(state.currentWeather.main.temp),
       tMinValue: Math.round(state.currentWeather.main.temp_min),
-      tUnit: '&#8451',
+      tUnitToggle: true,
       wSpeed: Math.round(state.currentWeather.wind.speed / 0.621371),
       wUnit: 'Km/h',
       wDeg: state.currentWeather.wind.deg,

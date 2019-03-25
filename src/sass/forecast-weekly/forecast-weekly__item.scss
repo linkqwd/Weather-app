@@ -5,10 +5,17 @@
   box-sizing: border-box;
   border-radius: 3px;
   transition: all 225ms ease-in-out;
+  position: relative;
+  background: #fff;
+
+  @include screen(900px) {
+    width: 33%;
+  }
 
   &:hover {
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
+    z-index: 2;
     cursor: pointer;
   }
 }

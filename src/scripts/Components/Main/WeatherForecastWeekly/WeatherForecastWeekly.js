@@ -9,7 +9,12 @@ export default class WeatherForecastWeekly extends Component {
 
   chooseWeatherDay(e) {
     const element = e.target.closest('.forecast-weekly__item');
+    const elementActive = document.querySelector(
+      '.forecast-weekly__item_active'
+    );
     const elementValue = element.id;
+    elementActive.classList.remove('forecast-weekly__item_active');
+    element.classList.add('forecast-weekly__item_active');
 
     AppState.update('WEEKLY-FORECAST', this.props[`${elementValue}`]);
   }
@@ -25,7 +30,7 @@ export default class WeatherForecastWeekly extends Component {
       if (item === 'fDay0') {
         return {
           tag: 'div',
-          classList: 'forecast-weekly__item',
+          classList: ['forecast-weekly__item', 'forecast-weekly__item_active'],
           eventHandler: [
             {
               eventType: 'click',
@@ -53,7 +58,6 @@ export default class WeatherForecastWeekly extends Component {
                     ? this.props.fDay0.currentWeather.tMinValue
                     : this.props[item].minTemp,
                 icon: this.props.fDay0.currentWeather.icon,
-                tUnit: '&deg;',
                 valueSmall: true
               }
             }
@@ -89,7 +93,6 @@ export default class WeatherForecastWeekly extends Component {
                 tValue: this.props[item].maxTemp,
                 tValueMin: this.props[item].minTemp,
                 icon: this.props[item].icon,
-                tUnit: '&deg;',
                 valueSmall: true
               }
             }

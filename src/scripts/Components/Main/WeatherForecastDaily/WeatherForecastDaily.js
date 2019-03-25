@@ -18,10 +18,15 @@ export default class WeatherForecastDaily extends Component {
 
   buildHtmlElements() {
     const dailyItemsArray = this.state.fDayX.map(item => {
-      let graphicValue =
-        Math.round(item.main.temp) * 2 + 40 >= 1
-          ? Math.round(item.main.temp) * 2 + 40
-          : 3;
+      let graphicValue = Math.round(item.main.temp) * 2 + 40;
+
+      if (graphicValue > 100) {
+        console.log(false);
+
+        graphicValue = 100;
+      } else if (graphicValue <= 1) {
+        graphicValue = 3;
+      }
 
       return {
         tag: 'div',
@@ -31,7 +36,6 @@ export default class WeatherForecastDaily extends Component {
             tag: WeatherForecastItem,
             props: {
               tValue: Math.round(item.main.temp),
-              tUnit: '&deg;',
               icon: item.weather[0].icon,
               iconSmall: true,
               valueSmall: true

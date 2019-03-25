@@ -5,4 +5,9 @@
   &:empty {
     display: none;
   }
+
+  @include screen(900px) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }

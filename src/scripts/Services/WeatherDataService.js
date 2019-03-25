@@ -8,18 +8,18 @@ class WeatherDataService {
     return responseData;
   }
 
-  async getCurrentWeatherById(id) {
+  async getWeatherForecast(city) {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
     );
     const responseData = await response.json();
 
     return responseData;
   }
 
-  async getWeatherForecast(city) {
+  async getCurrentWeatherById(id) {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
+      `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&appid=3688267edbac491005d0dff07f9cbf22`
     );
     const responseData = await response.json();
 

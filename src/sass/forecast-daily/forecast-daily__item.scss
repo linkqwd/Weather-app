@@ -2,4 +2,8 @@
   box-sizing: border-box;
   padding: 6px 8px;
   position: relative;
+
+  @include screen(700px) {
+    flex-grow: 1;
+  }
 }

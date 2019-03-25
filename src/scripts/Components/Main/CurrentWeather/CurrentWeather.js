@@ -81,7 +81,7 @@ export default class CurrentWeather extends Component {
                 tag: WeatherForecastItem,
                 props: {
                   tValue: this.state.tValue,
-                  tUnit: this.state.tUnit,
+                  tUnitToggle: this.state.tUnitToggle,
                   icon: this.state.icon
                 }
               },
