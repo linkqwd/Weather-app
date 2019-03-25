@@ -5,6 +5,11 @@
   justify-content: space-between;
   margin: -15px -15px;
 
+  & .tempreture-data__value {
+    min-width: 60px;
+    text-align: center;
+  }
+
   & > div {
     margin: 15px;
 
@@ -13,8 +18,8 @@
     }
   }
 
-  @include screen(600px) {
-    justify-content: space-around;
-    margin: 0 -15px;
+  @include screen(675px) {
+    margin: 35px -15px 0 -15px;
+    justify-content: center;
   }
 }

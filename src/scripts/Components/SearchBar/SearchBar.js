@@ -11,10 +11,20 @@ export default class SearchBar extends Component {
 
   handleSearchClick() {
     const searchInput = document.getElementById('search-input');
+
     WeatherDataService.getCurrentWeather(searchInput.value).then(
       currentWeatherPromise => {
-        WeatherDataService.getWeatherForecast(searchInput.value).then(
-          foreCastPromise => {
+        WeatherDataService.getWeatherForecast(searchInput.value)
+          .then(foreCastPromise => {
+            if (foreCastPromise.cod === '404') {
+              throw `Error: ${foreCastPromise.cod}, city <strong>${
+                searchInput.value
+              }</strong> not found`;
+            } else {
+              const errPopUp = document.getElementById('error-pop-up');
+              errPopUp.classList.remove('city-search__error-pop-up_active');
+            }
+
             AppState.update('SEARCH-RESULT', {
               currentWeather: currentWeatherPromise,
               foreCast: foreCastPromise
@@ -27,23 +37,44 @@ export default class SearchBar extends Component {
                 cityId: currentWeatherPromise.id
               }
             });
-          }
-        );
+          })
+          .catch(error => {
+            const errPopUp = document.getElementById('error-pop-up');
+            errPopUp.classList.add('city-search__error-pop-up_active');
+            errPopUp.innerHTML = error;
+
+            setTimeout(() => {
+              errPopUp.classList.remove('city-search__error-pop-up_active');
+            }, 10000);
+          });
       }
     );
   }
 
   itemSearchCallById(id) {
-    console.log(id);
-    WeatherDataService.getCurrentWeatherById(id).then(currentWeatherPromise => {
-      WeatherDataService.getWeatherForecastById(id).then(foreCastPromise => {
-        console.log(id);
-        AppState.update('SEARCH-RESULT', {
-          currentWeather: currentWeatherPromise,
-          foreCast: foreCastPromise
+    WeatherDataService.getCurrentWeatherById(id)
+      .then(currentWeatherPromise => {
+        WeatherDataService.getWeatherForecastById(id).then(foreCastPromise => {
+          if (foreCastPromise.cod === '404') {
+            throw `Error: ${foreCastPromise.cod}, city <strong>${
+              searchInput.value
+            }</strong> not found`;
+          } else {
+            const errPopUp = document.getElementById('error-pop-up');
+            errPopUp.classList.remove('city-search__error-pop-up_active');
+          }
+
+          AppState.update('SEARCH-RESULT', {
+            currentWeather: currentWeatherPromise,
+            foreCast: foreCastPromise
+          });
         });
+      })
+      .catch(error => {
+        const errPopUp = document.getElementById('error-pop-up');
+        errPopUp.classList.add('city-search__error-pop-up_active');
+        errPopUp.innerHTML = error;
       });
-    });
     this.handleMenuToggle();
   }
 
@@ -72,11 +103,6 @@ export default class SearchBar extends Component {
   }
 
   render() {
-    // setTimeout(function() {
-    //   const click = document.getElementById('search-submit');
-    //   click.click();
-    // }, 100);
-
     return [
       {
         tag: 'form',
@@ -88,6 +114,16 @@ export default class SearchBar extends Component {
           }
         ],
         children: [
+          {
+            tag: 'div',
+            classList: ['city-search__error-pop-up'],
+            attributes: [
+              {
+                name: 'id',
+                value: 'error-pop-up'
+              }
+            ]
+          },
           {
             tag: 'div',
             classList: ['city-search__container'],
@@ -131,7 +167,7 @@ export default class SearchBar extends Component {
                   },
                   {
                     name: 'value',
-                    value: 'Kiev, ua'
+                    value: 'Kieva, ua'
                   },
                   {
                     name: 'autocomplete',
