@@ -34,7 +34,7 @@ export default class Header extends Component {
             attributes: [
               {
                 name: 'href',
-                value: '/'
+                value: 'https://linkqwd.github.io/weather-app/index.html'
               }
             ]
           },
@@ -45,7 +45,7 @@ export default class Header extends Component {
             attributes: [
               {
                 name: 'href',
-                value: '/'
+                value: 'https://github.com/linkqwd/'
               }
             ]
           },

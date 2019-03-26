@@ -45,7 +45,7 @@ export default class SearchBar extends Component {
 
             setTimeout(() => {
               errPopUp.classList.remove('city-search__error-pop-up_active');
-            }, 10000);
+            }, 5500);
           });
       }
     );
@@ -81,6 +81,7 @@ export default class SearchBar extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     const searchInput = document.getElementById('search-input');
+
     if (searchInput.value) {
       this.handleSearchClick();
     } else {
@@ -94,12 +95,9 @@ export default class SearchBar extends Component {
   }
 
   init() {
-    [
-      'handleMenuToggle',
-      'handleSearchClick',
-      'handleFormSubmit',
-      'itemSearchCallById'
-    ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
+    ['handleSearchClick', 'handleFormSubmit', 'itemSearchCallById'].forEach(
+      methodName => (this[methodName] = this[methodName].bind(this))
+    );
   }
 
   render() {
@@ -136,12 +134,6 @@ export default class SearchBar extends Component {
                   {
                     name: 'type',
                     value: 'button'
-                  }
-                ],
-                eventHandler: [
-                  {
-                    eventType: 'click',
-                    handler: this.handleMenuToggle
                   }
                 ]
               },

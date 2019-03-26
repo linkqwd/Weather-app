@@ -6,4 +6,8 @@
   @include screen(700px) {
     flex-grow: 1;
   }
+
+  @include screen(900px) {
+    padding: 0 8px 44px 8px;
+  }
 }
