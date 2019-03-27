@@ -19,13 +19,7 @@ export default class WeatherForecastWeekly extends Component {
     AppState.update('WEEKLY-FORECAST', this.props[`${elementValue}`]);
   }
 
-  init() {
-    ['chooseWeatherDay'].forEach(
-      methodName => (this[methodName] = this[methodName].bind(this))
-    );
-  }
-
-  render() {
+  buildHtmlElements() {
     const domElements = Object.keys(this.props).map(item => {
       if (item === 'fDay0') {
         return {
@@ -101,11 +95,21 @@ export default class WeatherForecastWeekly extends Component {
       }
     });
 
+    return [...domElements];
+  }
+
+  init() {
+    ['chooseWeatherDay'].forEach(
+      methodName => (this[methodName] = this[methodName].bind(this))
+    );
+  }
+
+  render() {
     return [
       {
         tag: 'div',
         classList: ['forecast-weekly', 'layout__weekly-forecast'],
-        children: [...domElements]
+        children: this.buildHtmlElements()
       }
     ];
   }

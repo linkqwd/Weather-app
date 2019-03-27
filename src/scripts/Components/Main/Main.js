@@ -35,11 +35,6 @@ export default class Main extends Component {
     }, Infinity);
   }
 
-  relativeDayOfMonth(arg = 0) {
-    const date = new Date();
-    return date.getDate() + arg;
-  }
-
   updateMySelf(state) {
     const currentWeather = {
       city: `${state.currentWeather.name}, ${state.currentWeather.sys.country}`,
@@ -64,7 +59,9 @@ export default class Main extends Component {
     const weeklyForecast = {
       fDay0: {
         currentWeather: currentWeather,
-        dayOfWeek: this.relativeDayOfMonth(0),
+        dayOfWeek: +Component.getTimeFromEpoch(state.currentWeather.dt, {
+          day: '2-digit'
+        }),
         data: [],
         maxTemp: '',
         minTemp: '',
@@ -82,7 +79,7 @@ export default class Main extends Component {
       } else {
         if (weeklyForecast[`fDay${++obj}`] === undefined) {
           weeklyForecast[`fDay${obj}`] = {
-            dayOfWeek: this.relativeDayOfMonth(obj),
+            dayOfWeek: day,
             data: [],
             maxTemp: '',
             minTemp: ''
@@ -140,12 +137,9 @@ export default class Main extends Component {
   }
 
   init() {
-    [
-      'updateMySelf',
-      'defineMinValue',
-      'defineMaxValue',
-      'relativeDayOfMonth'
-    ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
+    ['updateMySelf', 'defineMinValue', 'defineMaxValue'].forEach(
+      methodName => (this[methodName] = this[methodName].bind(this))
+    );
   }
 
   render() {
