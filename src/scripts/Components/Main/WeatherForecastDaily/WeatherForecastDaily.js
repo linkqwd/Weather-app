@@ -1,6 +1,7 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
 import { AppState } from '../../../Services';
+import { Utils } from '../../../Services';
 
 export default class WeatherForecastDaily extends Component {
   constructor(host, props) {
@@ -44,7 +45,7 @@ export default class WeatherForecastDaily extends Component {
           {
             tag: 'p',
             classList: ['forecast-daily__time'],
-            content: Component.getTimeFromEpoch(item.dt, {
+            content: Utils.getTimeFromEpoch(item.dt, {
               hour: 'numeric',
               minute: 'numeric'
             })

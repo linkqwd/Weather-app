@@ -1,6 +1,7 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
 import { AppState } from '../../../Services';
+import { Utils } from '../../../Services';
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -36,14 +37,14 @@ export default class CurrentWeather extends Component {
       dt:
         'currentWeather' in state
           ? state.currentWeather.dt
-          : Component.getTimeFromEpoch(state.data[0].dt, { weekday: 'long' }),
+          : Utils.getTimeFromEpoch(state.data[0].dt, { weekday: 'long' }),
 
       descr:
         'currentWeather' in state ? state.currentWeather.descr : state.descr,
       icon: 'currentWeather' in state ? state.currentWeather.icon : state.icon,
 
-      sunrise: Component.getTimeFromEpoch(state.sunrise),
-      sunset: Component.getTimeFromEpoch(state.sunset)
+      sunrise: Utils.getTimeFromEpoch(state.sunrise),
+      sunset: Utils.getTimeFromEpoch(state.sunset)
     };
 
     this.updateState(newState);

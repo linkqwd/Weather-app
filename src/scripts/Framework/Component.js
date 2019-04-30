@@ -6,15 +6,6 @@ export default class Component {
     this._render();
   }
 
-  static getTimeFromEpoch(
-    arg,
-    params = { hour: 'numeric', minute: 'numeric', hour12: false }
-  ) {
-    var date = new Date(arg * 1000);
-    return date.toLocaleString('en-GB', params);
-    // https://learn.javascript.ru/intl#intl-datetimeformat
-  }
-
   updateState(state) {
     this.state = Object.assign({}, this.state, state);
     this._render();

@@ -91,13 +91,27 @@ export default class SearchBar extends Component {
 
   handleMenuToggle() {
     const menu = document.getElementById('menu-option');
+    const milk = document.querySelector('.city-search__milk');
+    milk.classList.toggle('city-search__milk_clickable');
     menu.classList.toggle('search-menu__opened');
   }
 
+  handleMenuClick() {
+    this.handleMenuToggle();
+  }
+
+  handleMilkClick() {
+    this.handleMenuToggle();
+  }
+
   init() {
-    ['handleSearchClick', 'handleFormSubmit', 'itemSearchCallById'].forEach(
-      methodName => (this[methodName] = this[methodName].bind(this))
-    );
+    [
+      'handleSearchClick',
+      'handleFormSubmit',
+      'itemSearchCallById',
+      'handleMenuClick',
+      'handleMilkClick'
+    ].forEach(methodName => (this[methodName] = this[methodName].bind(this)));
   }
 
   render() {
@@ -112,6 +126,16 @@ export default class SearchBar extends Component {
           }
         ],
         children: [
+          {
+            tag: 'div',
+            classList: ['city-search__milk'],
+            eventHandler: [
+              {
+                eventType: 'click',
+                handler: this.handleMilkClick
+              }
+            ]
+          },
           {
             tag: 'div',
             classList: ['city-search__error-pop-up'],
@@ -130,6 +154,12 @@ export default class SearchBar extends Component {
                 tag: 'button',
                 content: '&#9776;',
                 classList: 'city-search__burger',
+                eventHandler: [
+                  {
+                    eventType: 'click',
+                    handler: this.handleMenuClick
+                  }
+                ],
                 attributes: [
                   {
                     name: 'type',

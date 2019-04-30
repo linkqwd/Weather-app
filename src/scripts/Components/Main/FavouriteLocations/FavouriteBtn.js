@@ -8,24 +8,22 @@ export default class FavouriteBtn extends Component {
   }
 
   checkIfCityIsfav() {
-    setTimeout(() => {
-      const currentCity = document.querySelector('.current-weather__header');
+    const currentCity = document.querySelector('.current-weather__header');
 
-      const itemsInLocalStorage = window.localStorage.getItem('favourite');
+    const itemsInLocalStorage = window.localStorage.getItem('favourite');
 
-      const parsedItemsFromLocalStorage = JSON.parse(itemsInLocalStorage);
+    const parsedItemsFromLocalStorage = JSON.parse(itemsInLocalStorage);
 
-      if (
-        parsedItemsFromLocalStorage === null ||
-        parsedItemsFromLocalStorage[currentCity.id] === null ||
-        parsedItemsFromLocalStorage[currentCity.id] === undefined
-      ) {
-        return;
-      } else {
-        const favBtn = document.querySelector('.favorite-btn');
-        favBtn.classList.add('favorite-btn_active');
-      }
-    }, 0);
+    if (
+      parsedItemsFromLocalStorage === null ||
+      parsedItemsFromLocalStorage[currentCity.id] === null ||
+      parsedItemsFromLocalStorage[currentCity.id] === undefined
+    ) {
+      return;
+    } else {
+      const favBtn = document.querySelector('.favorite-btn');
+      favBtn.classList.add('favorite-btn_active');
+    }
   }
 
   updateMySelf(state) {
@@ -64,7 +62,6 @@ export default class FavouriteBtn extends Component {
   }
 
   render() {
-    this.checkIfCityIsfav();
     return [
       {
         tag: 'button',

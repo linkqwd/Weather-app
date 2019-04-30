@@ -4,6 +4,7 @@ import { WeatherForecastDaily } from './WeatherForecastDaily';
 import { WeatherForecastWeekly } from './WeatherForecastWeekly';
 import { AppState } from '../../Services';
 import { FavouriteBtn } from '../Main/FavouriteLocations/';
+import { Utils } from '../../Services';
 
 export default class Main extends Component {
   constructor(host, props) {
@@ -58,8 +59,8 @@ export default class Main extends Component {
 
     const weeklyForecast = {
       fDay0: {
-        currentWeather: currentWeather,
-        dayOfWeek: +Component.getTimeFromEpoch(state.currentWeather.dt, {
+        currentWeather,
+        dayOfWeek: +Utils.getTimeFromEpoch(state.currentWeather.dt, {
           day: '2-digit'
         }),
         data: [],
@@ -70,7 +71,7 @@ export default class Main extends Component {
     };
 
     for (let i = 0, obj = 0; i < state.foreCast.list.length; i++) {
-      let day = +Component.getTimeFromEpoch(state.foreCast.list[i].dt, {
+      let day = +Utils.getTimeFromEpoch(state.foreCast.list[i].dt, {
         day: '2-digit'
       });
 
@@ -122,17 +123,17 @@ export default class Main extends Component {
       }, ${weeklyForecast[key].data[filteredValue].weather[0].description}`;
     });
 
-    currentWeather.sunrise = Component.getTimeFromEpoch(currentWeather.sunrise);
-    currentWeather.sunset = Component.getTimeFromEpoch(currentWeather.sunset);
+    currentWeather.sunrise = Utils.getTimeFromEpoch(currentWeather.sunrise);
+    currentWeather.sunset = Utils.getTimeFromEpoch(currentWeather.sunset);
 
     const dailyForecast = {
       fDayX: weeklyForecast.fDay0.data
     };
 
     this.updateState({
-      currentWeather: currentWeather,
-      dailyForecast: dailyForecast,
-      weeklyForecast: weeklyForecast
+      currentWeather,
+      dailyForecast,
+      weeklyForecast
     });
   }
 

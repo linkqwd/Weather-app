@@ -1,5 +1,6 @@
 import Component from '../../Framework/Component';
 import logoImg from '../../../assets/logo.png';
+import { Utils } from '../../Services';
 
 export default class Header extends Component {
   constructor(host, props) {
@@ -56,21 +57,21 @@ export default class Header extends Component {
               {
                 tag: 'span',
                 classList: ['current-date__dddd'],
-                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                content: Utils.getTimeFromEpoch(Date.now() / 1000, {
                   weekday: 'long'
                 })
               },
               {
                 tag: 'span',
                 classList: ['current-date__dd'],
-                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                content: Utils.getTimeFromEpoch(Date.now() / 1000, {
                   day: 'numeric'
                 })
               },
               {
                 tag: 'span',
                 classList: ['current-date__mmmm'],
-                content: Component.getTimeFromEpoch(Date.now() / 1000, {
+                content: Utils.getTimeFromEpoch(Date.now() / 1000, {
                   month: 'long'
                 })
               }

@@ -1,6 +1,7 @@
 import Component from '../../../Framework/Component';
 import { WeatherForecastItem } from '../WeatherForecastItem';
 import { AppState } from '../../../Services';
+import { Utils } from '../../../Services';
 
 export default class WeatherForecastWeekly extends Component {
   constructor(host, props) {
@@ -76,7 +77,7 @@ export default class WeatherForecastWeekly extends Component {
           children: [
             {
               tag: 'p',
-              content: Component.getTimeFromEpoch(this.props[item].data[0].dt, {
+              content: Utils.getTimeFromEpoch(this.props[item].data[0].dt, {
                 weekday: 'long'
               }),
               classList: ['forecast-weekly__date']
