@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,UAAU,CAAC;EACT,QAAQ,EAAE,QAAQ;EAClB,SAAS,EAAE,KAAK;CACjB",
-    "sources": [
-        "../src/sass/wind-data/wind-data.scss"
-    ],
-    "names": [],
-    "file": "wind-data.css"
-}

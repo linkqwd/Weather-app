@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../src/sass/search-history/search-history.scss"
-    ],
-    "names": [],
-    "file": "search-history.css"
-}

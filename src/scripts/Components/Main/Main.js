@@ -145,7 +145,6 @@ export default class Main extends Component {
 
   render() {
     if (this.state === undefined) return [];
-    console.log(this.state);
 
     const foreCast = [
       {

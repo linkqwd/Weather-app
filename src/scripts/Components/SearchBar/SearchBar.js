@@ -29,6 +29,7 @@ export default class SearchBar extends Component {
               currentWeather: currentWeatherPromise,
               foreCast: foreCastPromise
             });
+
             AppState.update('HISTORY', {
               [currentWeatherPromise.id]: {
                 cityName: `${currentWeatherPromise.name}, ${

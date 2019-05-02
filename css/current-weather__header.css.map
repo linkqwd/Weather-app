@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,wBAAwB,CAAC;EACvB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,YAAY,EAAE,IAAI;CACnB",
-    "sources": [
-        "../src/sass/current-weather/current-weather__header.scss"
-    ],
-    "names": [],
-    "file": "current-weather__header.css"
-}

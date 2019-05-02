@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,OAAO,EAAE,YAAY;EACrB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,0BAA0B,CAAC,MAAM,CAAC,SAAS;EACvD,SAAS,EAAE,UAAU;EACrB,YAAY,EAAE,IAAI;CACnB",
-    "sources": [
-        "../src/sass/wind-data/wind-data__icon.scss"
-    ],
-    "names": [],
-    "file": "wind-data__icon.css"
-}

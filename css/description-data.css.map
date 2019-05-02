@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../src/sass/description-data/description-data.scss"
-    ],
-    "names": [],
-    "file": "description-data.css"
-}

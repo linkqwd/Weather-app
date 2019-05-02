@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,8BAA8B,CAAC;EAC7B,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,WAAW;EACvB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,MAAM,EAAE,OAAO;CAChB",
-    "sources": [
-        "../src/sass/current-weather/current-weather__favorite-btn.scss"
-    ],
-    "names": [],
-    "file": "current-weather__favorite-btn.css"
-}

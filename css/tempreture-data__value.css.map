@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,WAAW,EAAE,GAAG;EAChB,QAAQ,EAAE,QAAQ;CACnB",
-    "sources": [
-        "../src/sass/tempreture-data/tempreture-data__value.scss"
-    ],
-    "names": [],
-    "file": "tempreture-data__value.css"
-}

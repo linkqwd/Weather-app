@@ -7,58 +7,60 @@ export default class FavouriteBtn extends Component {
     AppState.watch('FAVOURITE', this.updateMySelf);
   }
 
-  checkIfCityIsfav() {
-    const currentCity = document.querySelector('.current-weather__header');
-
-    const itemsInLocalStorage = window.localStorage.getItem('favourite');
-
-    const parsedItemsFromLocalStorage = JSON.parse(itemsInLocalStorage);
-
-    if (
-      parsedItemsFromLocalStorage === null ||
-      parsedItemsFromLocalStorage[currentCity.id] === null ||
-      parsedItemsFromLocalStorage[currentCity.id] === undefined
-    ) {
-      return;
-    } else {
-      const favBtn = document.querySelector('.favorite-btn');
-      favBtn.classList.add('favorite-btn_active');
-    }
-  }
-
-  updateMySelf(state) {
-    this.state = Object.assign({}, this.state, state);
-  }
-
-  handleFavAction(e) {
-    const currentCityName = document.querySelector('.current-weather__header');
-
-    let result = {
-      [currentCityName.id]: {
-        cityName: currentCityName.innerHTML,
-        id: currentCityName.id
-      }
-    };
-
-    if (e.target.classList.contains('favorite-btn_active')) {
-      e.target.classList.remove('favorite-btn_active');
-      result = { [currentCityName.id]: null };
-    } else {
-      e.target.classList.add('favorite-btn_active');
-    }
-
-    AppState.update('FAVOURITE', result);
-    window.localStorage.setItem('favourite', JSON.stringify(this.state));
-  }
-
   init() {
-    ['checkIfCityIsfav', 'updateMySelf', 'handleFavAction'].forEach(
+    ['updateMySelf', 'handleFavAction'].forEach(
       methodName => (this[methodName] = this[methodName].bind(this))
     );
 
     if (localStorage.getItem('favourite') !== null) {
       this.state = JSON.parse(localStorage.getItem('favourite'));
     }
+  }
+
+  updateMySelf(state) {
+    console.log('fav updating');
+    this.updateState(state);
+  }
+
+  handleFavAction(e) {
+    const currentCity = document.querySelector('.current-weather__header');
+    const favButton = e.target;
+
+    let result = {
+      [currentCity.id]: {
+        cityName: currentCity.innerHTML,
+        id: currentCity.id
+      }
+    };
+
+    if (favButton.classList.contains('favorite-btn_active')) {
+      favButton.classList.remove('favorite-btn_active');
+      result = { [currentCity.id]: null };
+    } else {
+      favButton.classList.add('favorite-btn_active');
+    }
+
+    AppState.update('FAVOURITE', result);
+    window.localStorage.setItem('favourite', JSON.stringify(this.state));
+  }
+
+  checkIfCityIsFavourite() {
+    const renderedCity = document.querySelector('.current-weather__header');
+
+    const favItemsFromLocalStorage = JSON.parse(
+      window.localStorage.getItem('favourite')
+    );
+
+    if (favItemsFromLocalStorage[renderedCity.id]) {
+      const favBtn = document.querySelector('.favorite-btn');
+      favBtn.classList.add('favorite-btn_active');
+    }
+  }
+
+  componentHasRendered() {
+    setTimeout(() => {
+      this.checkIfCityIsFavourite();
+    }, 0);
   }
 
   render() {

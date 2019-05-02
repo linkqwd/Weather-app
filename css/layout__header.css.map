@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,aAAa,EAAE,IAAI;CACpB",
-    "sources": [
-        "../src/sass/layout/layout__header.scss"
-    ],
-    "names": [],
-    "file": "layout__header.css"
-}

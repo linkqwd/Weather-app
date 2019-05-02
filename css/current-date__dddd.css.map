@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,mBAAmB,CAAC;EAClB,WAAW,EAAE,GAAG;CAKjB;;AAND,AAGE,mBAHiB,AAGhB,MAAM,CAAC;EACN,OAAO,EAAE,IAAI;CACd",
-    "sources": [
-        "../src/sass/current-date/current-date__dddd.scss"
-    ],
-    "names": [],
-    "file": "current-date__dddd.css"
-}

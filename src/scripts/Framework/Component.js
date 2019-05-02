@@ -4,6 +4,7 @@ export default class Component {
     this.props = props;
     this.init();
     this._render();
+    this.componentHasRendered();
   }
 
   updateState(state) {
@@ -59,11 +60,15 @@ export default class Component {
           });
         }
 
+        this.componentHasRendered();
+
         return container;
       }
     }
+
     return element;
   }
 
   init() {}
+  componentHasRendered() {}
 }

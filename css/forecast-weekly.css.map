@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;CACpB;;AAED,AAAA,gBAAgB,CAAC,sBAAsB,CAAC;EACtC,KAAK,EAAE,IAAI;CACZ",
-    "sources": [
-        "../src/sass/forecast-weekly/forecast-weekly.scss"
-    ],
-    "names": [],
-    "file": "forecast-weekly.css"
-}
